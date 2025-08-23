@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-reset-senha',
-  imports: [],
+  standalone: true,
+  imports: [RouterModule],
   templateUrl: './reset-senha.component.html',
   styleUrl: './reset-senha.component.css'
 })

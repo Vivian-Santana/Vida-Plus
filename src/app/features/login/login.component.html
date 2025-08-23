@@ -1,1 +1,24 @@
-<p>login works!</p>
+<div>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <div>
+        <label>Usuário:</label>
+        <input formControlName="username" placeholder="Digite seu usuário">
+        <div *ngIf="username?.touched && username?.invalid" style="color:red">
+        Usuário é obrigatório
+        </div>
+    </div>
+
+    <div>
+        <label>Senha:</label>
+        <input type="password" formControlName="password" placeholder="Digite sua senha">
+        <div *ngIf="password?.touched && password?.invalid" style="color:red">
+        Senha é obrigatória
+        </div>
+    </div>
+
+    <button type="submit">Login</button>
+    </form>
+</div>
+
+
+

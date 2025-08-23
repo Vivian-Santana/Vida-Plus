@@ -1,20 +1,38 @@
 import { Routes } from '@angular/router';
-import { LoginComponent } from './features/login/login.component';
-import { ResetSenhaComponent } from './features/reset-senha/reset-senha.component';
-import { ListaConsultasComponent } from './features/agendamento/lista-consultas/lista-consultas.component';
-import { NovaConsultaComponent } from './features/agendamento/nova-consulta/nova-consulta.component';
 import { AuthGuard } from './core/guards/auth.guard';
 
 export const routes: Routes = [
-    { path: 'login', component: LoginComponent },
-  { path: 'reset-senha', component: ResetSenhaComponent },
+  {
+    path: 'login',
+    loadComponent: () => import('./features/login/login.component').then(m => m.LoginComponent)
+  },
+  {
+    path: 'reset-senha',
+    loadComponent: () => import('./features/reset-senha/reset-senha.component').then(m => m.ResetSenhaComponent)
+  },
   {
     path: 'agendamentos',
+    loadComponent: () => import('./features/agendamento/agendamentos/agendamentos.component').then(m => m.AgendamentosComponent),
     canActivate: [AuthGuard],
     children: [
-      { path: '', component: ListaConsultasComponent },
-      { path: 'novo', component: NovaConsultaComponent }
+      {
+        path: 'consultas',
+        loadComponent: () => import('./features/agendamento/lista-consultas/lista-consultas.component').then(m => m.ListaConsultasComponent)
+      },
+      {
+        path: 'nova-consulta',
+        loadComponent: () => import('./features/agendamento/nova-consulta/nova-consulta.component').then(m => m.NovaConsultaComponent)
+      },
+      {
+        path: '',
+        redirectTo: 'consultas',
+        pathMatch: 'full'
+      }
     ]
   },
-  { path: '', redirectTo: 'login', pathMatch: 'full' }
+  {
+    path: '**',
+    redirectTo: 'login',
+    pathMatch: 'full'
+  }
 ];
