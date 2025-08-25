@@ -1,3 +1,24 @@
-<p>lista-consultas works!</p>
+<div *ngIf="carregando">Carregando consultas...</div>
+<div *ngIf="erro">{{ erro }}</div>
+
+<table *ngIf="!carregando && consultas.length">
+  <thead>
+    <tr>
+      <th>Especialidade</th>
+      <th>Médico</th>
+      <th>Data</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let c of consultas">
+      <td>{{ c.especialidade }}</td>
+      <td>{{ c.nomeMedico }}</td>
+      <td>{{ c.data }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<div *ngIf="!carregando && !consultas.length">Nenhuma consulta encontrada.</div>
+
 
 <router-outlet></router-outlet>
