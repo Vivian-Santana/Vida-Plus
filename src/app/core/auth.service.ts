@@ -6,6 +6,7 @@ import { catchError, map, Observable, of, tap } from 'rxjs';
 
 export interface UsuarioLogado {
   id: number;          // extraído do token JWT
+  idPaciente?: number;
   role: string;        // extraído do token JWT
   nome: string;        // retornado pela API
   email: string;       // retornado pela API
@@ -17,6 +18,8 @@ export interface UsuarioLogado {
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
+
+  usuarioLogado!: UsuarioLogado;
 
   private apiUrl = 'http://localhost:8080'; // URL da API
   private tokenKey = 'token_jwt'; // chave usada no localStorage
@@ -46,26 +49,28 @@ export class AuthService {
     return localStorage.getItem(this.tokenKey); // usado para Authorization Header
   }
 
-    /** Novo método para obter dados do usuário logado **/
+    /** obtem dados do usuário logado **/
     getUsuarioLogado(): Observable<UsuarioLogado | null> {
     const token = this.getToken();
     if (!token) return of(null);
 
     try {
       const payload = JSON.parse(atob(token.split('.')[1]));
-      const userId = payload.id //|| payload.sub; 
-      const userRole = payload.role //|| payload.roles || payload.authorities;
+      const userId = payload.id; //id do usuario no token 
+      const userRole = payload.role;
 
-      return this.http.get<any>(`${this.apiUrl}/pacientes/${userId}`).pipe(
+      return this.http.get<any>(`${this.apiUrl}/pacientes/usuario/${userId}`).pipe(
         map(dados => ({
-          id: payload.id,
-          role: payload.role,
+          id: userId,
+          idPaciente: dados.idPaciente, // <- veio do endpoint
+          role: userRole,
           nome: dados.nome,
           email: dados.email,
           telefone: dados.telefone,
           cpf: dados.cpf,
           endereco: dados.endereco
         })),
+        tap(u => this.usuarioLogado = u as UsuarioLogado),
         catchError(() => of(null))
       );
     } catch {

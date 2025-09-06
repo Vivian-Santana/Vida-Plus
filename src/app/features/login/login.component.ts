@@ -37,6 +37,15 @@ export class LoginComponent {
 
     this.authService.login(username, password).subscribe({
       next: (response: any) => {
+        //getUsuarioLogado() tem q ser chamado logo após o login, para o  idPaciente ser buscado.
+          this.authService.getUsuarioLogado().subscribe(usuario => {
+        if (usuario) {
+          console.log('Usuário logado:', usuario);
+        }
+      });
+
+       this.router.navigate(['/nova-consulta']); // só navega depois de carregar
+
         console.log('Login bem-sucedido!', response);
         localStorage.setItem('token_jwt', response.token);// chave usada no interceptor
         

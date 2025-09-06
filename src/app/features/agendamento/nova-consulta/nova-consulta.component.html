@@ -1,3 +1,39 @@
-<p>nova-consulta works!</p>
+<form [formGroup]="consultaForm" (ngSubmit)="agendar()">
+
+  <label for="idMedico">Médico</label>
+  <input id="idMedico" formControlName="idMedico" type="number">
+
+  <label for="data">Data</label>
+  <input id="data" formControlName="data" type="datetime-local">
+
+  <label for="especialidade">Especialidade</label>
+  <select formControlName="especialidade">
+    <option value="ALERGOLOGIA">Dermatologia</option>
+    <option value="CARDIOLOGIA">Cardiologia</option>
+    <option value="CLINICO">Clínico</option>
+    <option value="CIRURGIA_GERAL">Cirurgia Geral</option>
+    <option value="DERMATOLOGIA">Dermatologia</option>
+    <option value="GASTROENTEROLOGIA">Gastroenterologia</option>
+    <option value="GERIATRIA">Geriatria</option>
+    <option value="GINECOLOGIA">Ginecologia</option>
+    <option value="HEMATOLOGIA">Hematologia</option>
+    <option value="NEFROLOGIA">Nefrologia</option>
+    <option value="NEUROLOGIA">Neurologia</option>
+    <option value="OBSTETRICIA">Obstetrícia</option>
+    <option value="OFTALMOLOGIA">Oftalmologia</option>
+    <option value="ONCOLOGIA">Oncologia</option>
+    <option value="ORTOPEDIA">Ortopedia</option>
+    <option value="OTORRINOLARINGOLOGIA">Otorrinolaringologia</option>
+    <option value="PEDIATRIA">Pediatria</option>
+    <option value="PNEUMOLOGIA">Pneumologia</option>
+    <option value="PSICOLOGIA">Psicologia</option>
+    <option value="PSIQUIATRIA">Psiquiatria</option>
+    <option value="UROLOGIA">Urologia</option>
+    <option value="VASCULAR">Vascular</option>
+ </select>
+
+  <button type="submit" [disabled]="consultaForm.invalid">Agendar</button>
+</form>
+
 
 <router-outlet></router-outlet>
