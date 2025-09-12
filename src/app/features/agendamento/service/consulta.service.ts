@@ -13,7 +13,7 @@ export class ConsultaService {
 
   constructor(private http: HttpClient) {}
 
-  // Chama /consultas sem precisar do id do paciente
+  // Pega consultas sem precisar do id do paciente
   listarMinhasConsultas(): Observable<Consulta[]> {
     return this.http.get<Consulta[]>(`${this.apiUrl}/consultas/minhas/consultas`);
   }

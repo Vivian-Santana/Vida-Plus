@@ -18,8 +18,7 @@ export class NovaConsultaComponent {
   usuarioCarregado = false;
 
   constructor(
-    private fb: FormBuilder,
-    //private consultaService: ConsultaService, 
+    private fb: FormBuilder, 
     private authService: AuthService,
     private http: HttpClient,
   ) {
