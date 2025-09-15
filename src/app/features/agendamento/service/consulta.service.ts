@@ -1,6 +1,6 @@
 // src/app/features/agendamento/services/consulta.service.ts
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Consulta } from '../models/consulta.model';
 
@@ -21,4 +21,15 @@ export class ConsultaService {
   agendarConsulta(dados: any): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/consultas`, dados);
   }
+  
+    cancelarConsulta(consulta: any): Observable<void> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    
+    // Monta a URL com query string
+    const url = `${this.apiUrl}/consultas/${consulta.id}?motivo=PACIENTE_DESISTIU`;
+
+    return this.http.delete<void>(url, { headers });
+  }
+
 }

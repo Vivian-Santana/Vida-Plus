@@ -40,6 +40,21 @@ export class ListaConsultasComponent {
       });
 
     }
+
+  cancelar(consulta: any): void {
+    this.consultaService.cancelarConsulta(consulta).subscribe({
+      next: () => {
+        console.log('Consulta cancelada!');
+        this.consultas = this.consultas.filter(c => c.id !== consulta.id); // Remove da lista direto no front
+        alert('Consulta cancelada com sucesso! ✅');
+      },
+      error: (err) => {
+        console.error('Erro ao cancelar a consulta', err);
+        alert('Erro ao cancelar a consulta ❌');
+      }
+    });
   }
+
+}
 
 

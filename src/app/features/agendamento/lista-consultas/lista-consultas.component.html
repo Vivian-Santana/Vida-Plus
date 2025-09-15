@@ -10,10 +10,13 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let c of consultas">
-      <td>{{ c.especialidade }}</td>
-      <td>{{ c.nomeMedico }}</td>
-      <td>{{ c.data }}</td>
+    <tr *ngFor="let consulta of consultas">
+      <td>{{ consulta.especialidade }}</td>
+      <td>{{ consulta.nomeMedico }}</td>
+      <td>{{ consulta.data }}</td>
+      <td>
+        <button (click)="cancelar(consulta)">Cancelar</button>
+      </td>
     </tr>
   </tbody>
 </table>

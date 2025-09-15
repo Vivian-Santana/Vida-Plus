@@ -1,0 +1,14 @@
+
+table {
+  border-collapse: separate; /* importante para border-spacing funcionar */
+  border-spacing: 0 10px; /* 0 horizontal, 10px vertical */
+  width: 100%;
+}
+
+th, td {
+  padding: 8px 12px; /* espaçamento interno das células */
+}
+
+button {
+  padding: 4px 8px; /* deixa o botão mais confortável */
+}

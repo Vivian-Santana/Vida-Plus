@@ -52,8 +52,14 @@ export class NovaConsultaComponent {
 
       this.http.post('http://localhost:8080/consultas', payload)
         .subscribe({
-          next: () => console.log('Consulta agendada!'),
-          error: (err) => console.error('Erro ao agendar', err)
+          next: () => {
+             alert('Consulta agendada com sucesso! ✅');
+          },
+
+          error: (err) => {
+            console.error('Erro ao agendar', err);
+            alert(' Erro ao agendar a consulta. Tente novamente. ❌');
+          }
         });
     }
 

@@ -2,4 +2,14 @@
 body{
     background-color: black;
     color:aliceblue;
+    font-family: Arial, sans-serif;
+
+    margin: 50px;
+    padding: 0;
+    box-sizing: border-box; /* faz com que padding/margem não quebre o layout */
 }
+
+html, body { 
+    height: 100%; 
+}
+
