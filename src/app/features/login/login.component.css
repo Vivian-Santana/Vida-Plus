@@ -1,0 +1,47 @@
+img{
+    width: 40%;
+    padding-bottom: 10px;
+}
+
+form{
+    justify-content: center;
+    width: 400px;       /* largura do formulário */
+    height: 520px;
+    margin: 0 auto;     /* centraliza na tela */
+}
+
+label{
+    color: #000;
+    font-size: small;
+}
+
+a{
+    display: block;
+    font-size: small;
+}
+
+.alerta{
+    color: red;
+}
+
+
+.btn {
+  display: block;
+  margin: 20px auto;  /* centraliza */
+  width: 100%;         /* largura maior */
+  background-color: #1BA9BF;
+  border-color: #1BA9BF;
+  font-weight: bold;
+  color: aliceblue;
+}
+
+.btn:hover {
+  background-color: #1BC9E4;
+  border-color: #1BC9E4;
+  color: white;
+}
+
+.btn:active{
+    background-color: #037A8C;
+}
+

@@ -6,14 +6,14 @@
     <tr>
       <th>Especialidade</th>
       <th>Médico</th>
-      <th>Data</th>
+      <th>Data e Hora</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let consulta of consultas">
       <td>{{ consulta.especialidade }}</td>
       <td>{{ consulta.nomeMedico }}</td>
-      <td>{{ consulta.data }}</td>
+      <td>{{ consulta.data | date: 'dd/MM/yyyy HH:mm' }}</td>
       <td>
         <button (click)="cancelar(consulta)">Cancelar</button>
       </td>

@@ -1,3 +1,4 @@
+<!--
 <div>
         <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <div>
@@ -19,6 +20,39 @@
     <button type="submit">Login</button>
     </form>
 </div>
+-->
 
-
-
+<div>
+    <form container="flex" [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="p-4 border rounded bg-light">
+        <img src="assets/img/Logo_vidaPlus.svg" alt="Logo Vida Plus" class="d-block mx-auto">
+        <div class="form-group">
+            <label for="exampleDropdownFormEmail2">Endereço de email</label>
+            <input formControlName="username" type="email" class="form-control" id="exampleDropdownFormEmail2" placeholder="email@exemplo.com">
+                <div class="alerta" *ngIf="username?.touched && username?.invalid">
+                    Digite seu e-mail.
+                </div>
+        </div>
+        <div class="form-group">
+            <label for="exampleDropdownFormPassword2">Senha</label>
+            <input formControlName="password" type="password" class="form-control" id="exampleDropdownFormPassword2" placeholder="Senha">
+            <div class="alerta" *ngIf="password?.touched && password?.invalid">
+                Digite sua senha.
+            </div>
+        </div>
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="dropdownCheck2">
+            <label class="form-check-label" for="dropdownCheck2">
+                Lembrar de mim
+            </label>
+        </div>
+        <button type="submit" class="btn">Entrar</button>
+        <div>
+            <a href="">Não tem uma conta? Cadastre-se</a>
+        </div>
+        
+        <div>
+            <a href="">Esqueceu sua senha?</a>
+        </div>
+        
+    </form>
+</div>
