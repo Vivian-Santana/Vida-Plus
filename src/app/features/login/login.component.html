@@ -1,28 +1,4 @@
-<!--
-<div>
-        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-    <div>
-        <label>Usuário:</label>
-        <input formControlName="username" placeholder="Digite seu usuário">
-        <div *ngIf="username?.touched && username?.invalid" style="color:red">
-        Usuário é obrigatório
-        </div>
-    </div>
-
-    <div>
-        <label>Senha:</label>
-        <input type="password" formControlName="password" placeholder="Digite sua senha">
-        <div *ngIf="password?.touched && password?.invalid" style="color:red">
-        Senha é obrigatória
-        </div>
-    </div>
-
-    <button type="submit">Login</button>
-    </form>
-</div>
--->
-
-<div>
+<div>    
     <form container="flex" [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="p-4 border rounded bg-light">
         <img src="assets/img/Logo_vidaPlus.svg" alt="Logo Vida Plus" class="d-block mx-auto">
         <div class="form-group">
@@ -32,13 +8,29 @@
                     Digite seu e-mail.
                 </div>
         </div>
+
         <div class="form-group">
-            <label for="exampleDropdownFormPassword2">Senha</label>
-            <input formControlName="password" type="password" class="form-control" id="exampleDropdownFormPassword2" placeholder="Senha">
+
+            <div class="input-wrapper">
+                <label for="exemploSenha">Senha</label>
+                <input id="exemploSenha"
+                    [type]="mostrarSenha ? 'text' : 'password'"
+                    class="form-control"
+                    formControlName="password"
+                    placeholder="Digite sua senha"
+                />
+                <i class="fa-solid"
+                    *ngIf="password?.value"
+                    [ngClass]="mostrarSenha ? 'fa-eye' : 'fa-eye-slash'"
+                    (click)="alternarSenha()">
+                </i>
+            </div>
+
             <div class="alerta" *ngIf="password?.touched && password?.invalid">
                 Digite sua senha.
             </div>
         </div>
+
         <div class="form-check">
             <input type="checkbox" class="form-check-input" id="dropdownCheck2">
             <label class="form-check-label" for="dropdownCheck2">
@@ -46,11 +38,11 @@
             </label>
         </div>
         <button type="submit" class="btn">Entrar</button>
-        <div>
+        <div class="text-center">
             <a href="">Não tem uma conta? Cadastre-se</a>
         </div>
         
-        <div>
+        <div class="text-center">
             <a href="">Esqueceu sua senha?</a>
         </div>
         

@@ -6,7 +6,7 @@ img{
 form{
     justify-content: center;
     width: 400px;       /* largura do formulário */
-    height: 520px;
+    height: 560px;
     margin: 0 auto;     /* centraliza na tela */
 }
 
@@ -16,14 +16,12 @@ label{
 }
 
 a{
-    display: block;
     font-size: small;
 }
 
 .alerta{
     color: red;
 }
-
 
 .btn {
   display: block;
@@ -44,4 +42,31 @@ a{
 .btn:active{
     background-color: #037A8C;
 }
+
+/*olhinho ícone do font awesome import via CDN*/
+
+.input-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.input-wrapper input {
+  border-radius: 2px;
+  width: 100%;
+  height: 40px;
+  padding-right: 40px; /* espaço para o ícone */
+  box-sizing: border-box;
+}
+
+.input-wrapper i {
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translateY(50%); /* centraliza no input */
+  cursor: pointer;
+  color: #555;
+}
+
+
+
 

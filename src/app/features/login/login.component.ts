@@ -16,6 +16,13 @@ export class LoginComponent {
 
   loginForm: FormGroup;
 
+  mostrarSenha: boolean = false;
+
+  // mostra/esconde senha
+  alternarSenha() {
+    this.mostrarSenha = !this.mostrarSenha;
+  }
+
   constructor(
     private fb: FormBuilder, 
     private authService: AuthService, 
