@@ -49,6 +49,8 @@ export class LoginComponent {
         if (usuario) {
           console.log('Usuário logado:', usuario);
         }
+        // apos login vai para home
+        this.router.navigate(['/home']);
       });
 
        this.router.navigate(['/nova-consulta']); // só navega depois de carregar

@@ -1,0 +1,14 @@
+.cards-container {
+  display: flex;
+  gap: 20px;          /* espaço entre os cards */
+  justify-content: center; /* centraliza na horizontal*/
+  margin-top: 100px;
+}
+
+.card{
+  transition: transform 0.2s ease; /* animação suave */
+  cursor: pointer;
+}
+.card:hover{
+  transform: translateY(-5px); /* "saltar" 5px para cima */
+}

@@ -1,4 +1,4 @@
-<div>    
+<div class="card-login">    
     <form container="flex" [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="p-4 border rounded bg-light">
         <img src="assets/img/Logo_vidaPlus.svg" alt="Logo Vida Plus" class="d-block mx-auto">
         <div class="form-group">
@@ -38,11 +38,9 @@
             </label>
         </div>
         <button type="submit" class="btn">Entrar</button>
-        <div class="text-center">
+        <div class="card-body text-center">
             <a href="">Não tem uma conta? Cadastre-se</a>
-        </div>
-        
-        <div class="text-center">
+            <br>
             <a href="">Esqueceu sua senha?</a>
         </div>
         
