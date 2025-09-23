@@ -36,12 +36,6 @@ export const routes: Routes = [
     canActivate: [AuthGuard]
   },
 
-   {
-    path: 'nav-bar',
-    loadComponent: () => import('./shared/navbar/navbar.component').then(m => m.NavbarComponent),
-    canActivate: [AuthGuard]
-  },
-
   // fallback
   { path: '**', redirectTo: 'home', pathMatch: 'full' }
 ];

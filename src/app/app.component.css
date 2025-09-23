@@ -1,0 +1,23 @@
+/* styles.css ou no componente pai */
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+.app-container {
+  min-height: 100vh;   /* ocupa a tela toda */
+  display: flex;
+  flex-direction: column;  /* empilha os elementos */
+}
+
+main {
+  flex: 1;  /* ocupa todo o espaço disponível */
+}
+
+footer {
+  background: #038C8A; /* exemplo */
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+

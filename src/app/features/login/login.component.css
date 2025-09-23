@@ -3,6 +3,7 @@
   justify-content: center; /* centraliza horizontalmente */
   align-items: center;     /* centraliza verticalmente */
   height: 100vh;           /* necessário para ocupar a altura total da tela */
+  background-color:#6f6f6f18;
 }
 
 img{

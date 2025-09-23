@@ -6,9 +6,17 @@ table {
 }
 
 th, td {
-  padding: 8px 12px; /* espaçamento interno das células */
+  padding: 8px 20px; /* espaçamento interno das células */
 }
 
-button {
+.td-btn {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
   padding: 4px 8px; /* deixa o botão mais confortável */
 }
+
+.container{
+  justify-content: center;
+}
+

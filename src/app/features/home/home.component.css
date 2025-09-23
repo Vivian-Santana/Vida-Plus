@@ -12,3 +12,16 @@
 .card:hover{
   transform: translateY(-5px); /* "saltar" 5px para cima */
 }
+
+/* Responsividade */
+@media (max-width: 519px), (max-height: 643px) {
+  .cards-container {
+    flex-direction: column;  /* empilha os cards */
+    align-items: center;     /* centraliza na tela */
+  }
+
+  .cards-container .card {
+    max-width: 90%;   /* ocupa 90% da tela menor */
+    margin-bottom: 15px;
+  }
+}

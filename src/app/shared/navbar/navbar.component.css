@@ -6,3 +6,20 @@ img{
 .nav-link{
     font-weight: bold;
 }
+
+nav {
+  box-shadow: 1px 2px 3px #038c8aa0; /* sombra verde só embaixo */
+}
+
+@media (max-width: 660px) {
+  img {
+    width: 10%;
+  }
+}
+
+@media (max-width: 308px) {
+  img {
+    width: 20%;
+  }
+}
+
