@@ -30,15 +30,26 @@ export class NovaConsultaComponent {
     });
   }
 
+  //CARREGA O USUÁRIO ASSIM QUE O COMPONENTE INICIA
+  ngOnInit(): void {
+    this.authService.carregarUsuarioLogado().subscribe(usuario => {
+      if (usuario) {
+        this.idPaciente = usuario.idPaciente;
+        this.usuarioCarregado = true;
+        console.log('idPaciente carregado:', this.idPaciente); //debug
+      } else {
+        console.error('Erro: idPaciente não carregado');
+      }
+    });
+  }
+
     agendar() {
       if (!this.consultaForm.valid) {
         console.warn('Formulário inválido');
         return;
       }
 
-      const idPaciente = this.authService.usuarioLogado?.idPaciente;
-
-      if (!idPaciente) {
+      if (!this.idPaciente) {
         console.error('Erro: idPaciente não carregado.');
         return;
       }
@@ -47,7 +58,7 @@ export class NovaConsultaComponent {
       idMedico: this.consultaForm.value.idMedico,
       data: this.consultaForm.value.data,
       especialidade: this.consultaForm.value.especialidade,
-      idPaciente: this.authService.usuarioLogado?.idPaciente // <<--- idPaciente preenchido
+      idPaciente: this.idPaciente // <<--- idPaciente preenchido vem do ngOnInit
     };  
 
       this.http.post('http://localhost:8080/consultas', payload)

@@ -44,37 +44,32 @@ export class LoginComponent {
 
     this.authService.login(username, password).subscribe({
       next: (response: any) => {
-        //getUsuarioLogado() tem q ser chamado logo após o login, para o  idPaciente ser buscado.
-          this.authService.getUsuarioLogado().subscribe(usuario => {
-        if (usuario) {
-          console.log('Usuário logado:', usuario);
-        }
-        // apos login vai para home
-        this.router.navigate(['/home']);
-      });
-
-       this.router.navigate(['/nova-consulta']); // só navega depois de carregar
-
         console.log('Login bem-sucedido!', response);
-        localStorage.setItem('token_jwt', response.token);// chave usada no interceptor
-        
-        // Verifica se há uma rota salva
-      const redirect = localStorage.getItem('redirecionarAposLogin') || '/agendamentos/consultas';
-      localStorage.removeItem('redirecionarAposLogin'); // limpa após usar
 
-      console.log('Redirecionando para:', redirect);
-      this.router.navigate([redirect]); // redireciona se login OK
+        //o token já é salvo no AuthService.login()
+
+        //chama carregarUsuarioLogado() em vez de getUsuarioLogado()
+        this.authService.carregarUsuarioLogado().subscribe(usuario => {
+          if (usuario) {
+            console.log('Usuário logado:', usuario);
+
+            //redireciona só depois que usuário é carregado
+            const redirect = localStorage.getItem('redirecionarAposLogin') || '/home';
+            localStorage.removeItem('redirecionarAposLogin');
+            console.log('Redirecionando para:', redirect);
+            this.router.navigate([redirect]);
+          } else {
+            alert('Erro ao carregar informações do usuário.');
+          }
+        });
       },
       error: (err) => {
         console.error('Erro no login', err);
         alert('Usuário ou senha inválidos!');
       }
     });
-
   }
 
-    // helper para o template
   get username() { return this.loginForm.get('username'); }
   get password() { return this.loginForm.get('password'); }
-    
 }
