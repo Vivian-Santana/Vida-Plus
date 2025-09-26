@@ -24,7 +24,7 @@ export class NovaConsultaComponent {
   ) {
 
     this.consultaForm = this.fb.group({
-      idMedico: [null, Validators.required], // opcional
+      nomeMedico: [null, Validators.required], // opcional
       data: ['', Validators.required],
       especialidade: ['', Validators.required]
     });
@@ -55,13 +55,13 @@ export class NovaConsultaComponent {
       }
 
       const payload = {
-      idMedico: this.consultaForm.value.idMedico,
+      nomeMedico: this.consultaForm.value.nomeMedico,
       data: this.consultaForm.value.data,
       especialidade: this.consultaForm.value.especialidade,
       idPaciente: this.idPaciente // <<--- idPaciente preenchido vem do ngOnInit
     };  
 
-      this.http.post('http://localhost:8080/consultas', payload)
+      this.http.post('http://localhost:8080/consultas/agendar-por-nome-medico', payload)
         .subscribe({
           next: () => {
              alert('Consulta agendada com sucesso! ✅');
