@@ -1,7 +1,7 @@
 // lógica de autenticação e token
 
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, Observable, of, tap } from 'rxjs';
 import { UsuarioLogado } from '../models/usuario-logado.model';
 
@@ -93,6 +93,15 @@ export class AuthService {
     } catch {
       return of(null);
     }
+  }
+
+    resetSenha(dados: { senhaAtual: string; novaSenha: string }) {
+      const token = localStorage.getItem(this.tokenKey);
+      const headers = new HttpHeaders({
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      });
+    return this.http.patch(`${this.apiUrl}/usuarios/reset-senha`, dados, { headers });
   }
 
 }

@@ -1,3 +1,57 @@
-<p>reset-senha works!</p>
+<div class="card-reset-senha">    
+  <form [formGroup]="resetForm" (ngSubmit)="onSubmit()" class="p-4 border rounded bg-light">
+    
+    <img src="assets/img/Logo_vidaPlus.svg" alt="Logo Vida Plus" class="d-block mx-auto mb-3">
+
+    <!-- Senha atual -->
+    <div class="form-group mt-3">
+      <div class="input-wrapper">
+        <label for="senhaAtual">Senha Atual</label>
+        <input id="senhaAtual"
+               [type]="mostrarSenhaAtual ? 'text' : 'password'"
+               class="form-control"
+               formControlName="senhaAtual"
+               placeholder="Digite sua senha atual" />
+        <i class="fa-solid"
+           *ngIf="senhaAtual?.value"
+           [ngClass]="mostrarSenhaAtual ? 'fa-eye' : 'fa-eye-slash'"
+           (click)="alternarSenhaAtual()">
+        </i>
+      </div>
+      <div class="alerta" *ngIf="senhaAtual?.touched && senhaAtual?.invalid">
+        A senha atual é obrigatória.
+      </div>
+    </div>
+
+    <!-- Nova senha -->
+    <div class="form-group mt-3">
+      <div class="input-wrapper">
+        <label for="novaSenha">Nova Senha</label>
+        <input id="novaSenha"
+               [type]="mostrarNovaSenha ? 'text' : 'password'"
+               class="form-control"
+               formControlName="novaSenha"
+               placeholder="Digite sua nova senha" />
+        <i class="fa-solid"
+           *ngIf="novaSenha?.value"
+           [ngClass]="mostrarNovaSenha ? 'fa-eye' : 'fa-eye-slash'"
+           (click)="alternarNovaSenha()">
+        </i>
+      </div>
+      <div class="alerta" *ngIf="novaSenha?.touched && novaSenha?.invalid">
+        A nova senha é obrigatória e deve ter pelo menos 6 caracteres.
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary w-100 mt-4">
+      Alterar Senha
+    </button>
+
+    <div class="card-body text-center p-2">
+      <a routerLink="/login">Voltar ao login</a>
+    </div>
+
+  </form>
+</div>
 
 <router-outlet></router-outlet>
