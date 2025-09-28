@@ -47,11 +47,34 @@
       Alterar Senha
     </button>
 
+      <!-- Spinner de carregamento -->
+    <div *ngIf="carregando" class="text-center mt-3">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Carregando...</span>
+      </div>
+    </div>
+
     <div class="card-body text-center p-2">
       <a routerLink="/login">Voltar ao login</a>
     </div>
-
   </form>
+
+        <!-- Modal de sucesso -->
+    <div *ngIf="mostrarModalSucesso" class="modal-overlay">
+      <div class="modal-content bg-success text-white">
+        <h5 class="mb-2">✅ Sucesso</h5>
+        <p>{{ mensagemModal }}</p>
+      </div>
+    </div>
+
+    <!-- Modal de erro -->
+    <div *ngIf="mostrarModalErro" class="modal-overlay">
+      <div class="modal-content bg-danger text-white">
+        <h5 class="mb-2"> ❌ Erro</h5>
+        <p>{{ mensagemModal }}</p>
+      </div>
+    </div>
+
 </div>
 
 <router-outlet></router-outlet>

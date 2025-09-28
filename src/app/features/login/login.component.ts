@@ -15,8 +15,9 @@ import { Router, RouterModule } from '@angular/router';
 export class LoginComponent {
 
   loginForm: FormGroup;
-
   mostrarSenha: boolean = false;
+  mostrarModalErro = false;
+  mensagemModal = '';
 
   // mostra/esconde senha
   alternarSenha() {
@@ -65,7 +66,9 @@ export class LoginComponent {
       },
       error: (err) => {
         console.error('Erro no login', err);
-        alert('Usuário ou senha inválidos!');
+        this.mensagemModal = err.error?.message || 'Erro no login. Verifique suas credenciais.';
+        this.mostrarModalErro = true;
+        setTimeout(() => this.mostrarModalErro = false, 4000);
       }
     });
   }

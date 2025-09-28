@@ -19,6 +19,11 @@ resetForm: FormGroup;
   mostrarSenha = false;
   mostrarSenhaAtual = false;
   mostrarNovaSenha = false;
+  carregando = false;
+  mostrarModalSucesso = false;
+  mostrarModalErro = false;
+  mensagemModal = '';
+
 
   alternarSenhaAtual() {
     this.mostrarSenhaAtual = !this.mostrarSenhaAtual;
@@ -40,27 +45,30 @@ resetForm: FormGroup;
   }
 
   onSubmit() {
-    console.log('Submit acionado');
     if (this.resetForm.invalid) {
-      console.warn('Formulário inválido:', this.resetForm.value);
       this.resetForm.markAllAsTouched();
       return;
     }
 
+    this.carregando = true;
+
     const { senhaAtual, novaSenha } = this.resetForm.value;
     const payload = { senhaAtual, novaSenha };
 
-    console.log('Enviando resetSenha:', payload);
-
     this.authService.resetSenha(payload).subscribe({
       next: () => {
-        console.log('Senha alterada com sucesso!');
-        alert('Senha alterada com sucesso!');
-        this.router.navigate(['/login']); // Redireciona para login após sucesso
+        //console.log('Senha alterada com sucesso!');
+        this.mensagemModal = 'Senha alterada com sucesso! Você será redirecionado ao login.';
+        this.mostrarModalSucesso = true;
+        setTimeout(() => 
+          this.router.navigate(['/login']), 4000);
       },
       error: (err: HttpErrorResponse) => {
-        console.error('Erro ao resetar senha', err);
-        alert(err.error?.message || err.message || 'Erro ao alterar a senha.');
+        //console.error('Erro ao resetar senha', err);
+        this.carregando = false;
+        this.mensagemModal = err.error?.message || 'Erro ao alterar a senha.';
+        this.mostrarModalErro = true;
+        setTimeout(() => this.mostrarModalErro = false, 6000);
       }
     });
   }
