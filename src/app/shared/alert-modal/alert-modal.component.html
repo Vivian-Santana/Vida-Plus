@@ -1,0 +1,16 @@
+<!-- Modal de sucesso -->
+<div *ngIf="modalService.mostrarModalSucesso" class="modal-overlay">
+  <div class="modal-content bg-success text-white">
+    <h5 class="mb-2">✅ Sucesso</h5>
+    <p>{{ modalService.mensagemModal }}</p>
+  </div>
+</div>
+
+<!-- Modal de erro -->
+<div *ngIf="modalService.mostrarModalErro" class="modal-overlay">
+  <div class="modal-content bg-danger text-white">
+    <h5 class="mb-2">❌ Erro</h5>
+    <p>{{ modalService.mensagemModal }}</p>
+  </div>
+</div>
+

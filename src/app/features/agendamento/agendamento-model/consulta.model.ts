@@ -1,4 +1,5 @@
-// src/app/features/agendamento/models/consulta.model.ts
+// src/app/features/agendamento/agendamento-model/consulta.model.ts
+// modelo de dados da feature de agendamento
 export interface Consulta {
   id: number;
   data: string;

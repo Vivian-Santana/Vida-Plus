@@ -16,3 +16,8 @@ input{
 button{
     margin: 20px;
 }
+
+.custom-select{
+    width: 200px;
+}
+

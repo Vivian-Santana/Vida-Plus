@@ -16,13 +16,25 @@
         <td>{{ consulta.nomeMedico }}</td>
         <td>{{ consulta.data | date: 'dd/MM/yyyy HH:mm' }}</td>
         <td class="td-btn">
-          <button class="btn btn-outline-danger my-2 my-sm-0" (click)="cancelar(consulta)">Cancelar</button>
+          <button class="btn btn-outline-danger my-2 my-sm-0" (click)="abrirConfirmacao(consulta)">Cancelar</button>
         </td>
       </tr>
     </tbody>
   </table>
+  
 </div>
 
-
 <div *ngIf="!carregando && !consultas.length">Nenhuma consulta encontrada.</div>
+
+<!-- Modal -->
+<app-confirm-modal
+  *ngIf="consultaParaCancelar"
+  [titulo]="'Cancelar consulta'"
+  [mensagem]="'Deseja realmente cancelar esta consulta?'"
+  (confirmado)="confirmarCancelamento()"
+  (fechado)="fecharModal()">
+</app-confirm-modal>
+
+<app-alert-modal></app-alert-modal>
+
 

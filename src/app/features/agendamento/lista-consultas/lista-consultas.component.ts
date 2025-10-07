@@ -1,13 +1,15 @@
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ConsultaService } from '../service/consulta.service';
-import { Consulta } from '../models/consulta.model';
+import { Consulta } from '../agendamento-model/consulta.model';
+import { AlertModalComponent } from '../../../shared/alert-modal/alert-modal.component';
+import { ModalService } from '../service/modal.service';
+import { ConfirmModalComponent } from "../../../shared/confirm-modal/confirm-modal.component";
 
 @Component({
   selector: 'app-lista-consultas',
   standalone: true,
-  imports: [RouterModule, CommonModule],
+  imports: [CommonModule, AlertModalComponent, ConfirmModalComponent],
   templateUrl: './lista-consultas.component.html',
   styleUrl: './lista-consultas.component.css'
 })
@@ -16,8 +18,20 @@ export class ListaConsultasComponent {
   consultas: Consulta[] = []; //armazena o array de cosultas agendadas
   carregando = false;
   erro: string | null = null;
+  consultaParaCancelar: any = null;
 
-    constructor(private consultaService: ConsultaService) {}
+    constructor(
+      private consultaService: ConsultaService, 
+      private modalService: ModalService
+    ) {}
+
+    abrirConfirmacao(consulta: any) {
+    this.consultaParaCancelar = consulta;
+  }
+
+  fecharModal() {
+    this.consultaParaCancelar = null;
+  }
 
     ngOnInit(): void {
       this.carregarConsultas();
@@ -41,16 +55,18 @@ export class ListaConsultasComponent {
 
     }
 
-  cancelar(consulta: any): void {
-    this.consultaService.cancelarConsulta(consulta).subscribe({
+    confirmarCancelamento() {
+    if (!this.consultaParaCancelar) return;
+
+    this.consultaService.cancelarConsulta(this.consultaParaCancelar).subscribe({
       next: () => {
-        console.log('Consulta cancelada!');
-        this.consultas = this.consultas.filter(c => c.id !== consulta.id); // Remove da lista direto no front
-        alert('Consulta cancelada com sucesso! ✅');
+        this.consultas = this.consultas.filter(c => c.id !== this.consultaParaCancelar.id);
+        this.modalService.abrirModalSucesso('Consulta cancelada com sucesso!');
+        this.fecharModal();
       },
       error: (err) => {
-        console.error('Erro ao cancelar a consulta', err);
-        alert('Erro ao cancelar a consulta ❌');
+        this.modalService.abrirModalErro(this.modalService.handleApiError(err));
+        this.fecharModal();
       }
     });
   }

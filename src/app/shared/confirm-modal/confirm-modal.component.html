@@ -1,0 +1,15 @@
+<div class="modal-overlay" tabindex="0" role="dialog" (click)="fechar()">
+  
+ <div class="modal-content" (click)="$event.stopPropagation()">
+    <h3>{{ titulo }}</h3>
+    <p>{{ mensagem }}</p>
+
+    <div class="modal-buttons">
+      <button class="btn-nao" (click)="fechar()">Não</button>
+      <button class="btn-sim" (click)="confirmar()">Sim</button>
+    </div>
+    
+  </div>
+
+</div>
+

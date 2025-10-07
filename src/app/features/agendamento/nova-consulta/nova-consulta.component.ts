@@ -3,11 +3,15 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { RouterModule } from '@angular/router';
 import { AuthService } from '../../../core/auth.service';
 import { HttpClient } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
+import { ModalService } from '../service/modal.service';
+import { AlertModalComponent } from '../../../shared/alert-modal/alert-modal.component';
+import { Medico } from '../../../models/medico.model';
 
 @Component({
   selector: 'app-nova-consulta',
   standalone: true,
-  imports: [RouterModule, ReactiveFormsModule],
+  imports: [CommonModule, RouterModule, ReactiveFormsModule, AlertModalComponent],
   templateUrl: './nova-consulta.component.html',
   styleUrl: './nova-consulta.component.css'
 })
@@ -17,12 +21,20 @@ export class NovaConsultaComponent {
   idPaciente!: number;
   usuarioCarregado = false;
 
+   // controle dos modais
+  mostrarModalSucesso = false;
+  mostrarModalErro = false;
+  mensagemModal = '';
+  medicos: any;
+
+  medico: Medico[] = [];
+
   constructor(
-    private fb: FormBuilder, 
+    private fb: FormBuilder,
     private authService: AuthService,
     private http: HttpClient,
+    private modalService: ModalService,
   ) {
-
     this.consultaForm = this.fb.group({
       nomeMedico: [null, Validators.required], // opcional
       data: ['', Validators.required],
@@ -41,37 +53,58 @@ export class NovaConsultaComponent {
         console.error('Erro: idPaciente não carregado');
       }
     });
+
+    // chama o método para buscar médicos
+    this.carregarMedicos();
+  }
+  
+  // método que busca os médicos na API
+  carregarMedicos(): void {
+    this.http.get<{content: Medico[]}>('http://localhost:8080/medicos')
+      .subscribe({
+        next: (resposta) => this.medicos =  resposta.content,
+        //console.log('Médicos carregados:', this.medicos), // debug
+        error: () => this.modalService.abrirModalErro('Erro ao carregar médicos.') 
+      });
   }
 
-    agendar() {
-      if (!this.consultaForm.valid) {
-        console.warn('Formulário inválido');
-        return;
-      }
+  agendar() {
 
-      if (!this.idPaciente) {
-        console.error('Erro: idPaciente não carregado.');
-        return;
-      }
+    if (!this.consultaForm.valid) {
+      console.warn('Por favor, preencha todos os campos obrigatórios.');
+      return;
+    }
 
-      const payload = {
+    if (!this.idPaciente) {
+      console.error('Erro interno: idPaciente não carregado.');
+      return;
+    }
+
+    const payload = {
       nomeMedico: this.consultaForm.value.nomeMedico,
       data: this.consultaForm.value.data,
       especialidade: this.consultaForm.value.especialidade,
       idPaciente: this.idPaciente // <<--- idPaciente preenchido vem do ngOnInit
-    };  
+    };
 
-      this.http.post('http://localhost:8080/consultas/agendar-por-nome-medico', payload)
-        .subscribe({
-          next: () => {
-             alert('Consulta agendada com sucesso! ✅');
-          },
+    this.http.post('http://localhost:8080/consultas/agendar-por-nome-medico', payload)
+      .subscribe({
+        next: () => {
+          this.modalService.abrirModalSucesso('Consulta agendada com sucesso!');
+          this.consultaForm.reset();
+        },
+        error: (err) => {
+          // Extrai a mensagem automaticamente
+          const mensagem = this.modalService.handleApiError(err);
 
-          error: (err) => {
-            console.error('Erro ao agendar', err);
-            alert(' Erro ao agendar a consulta. Tente novamente. ❌');
+          // tratamento especial (dia ou horário fora do expediente)
+          if (/horário|funcionamento|18:59/.test(mensagem.toLowerCase())) {
+            this.modalService.abrirModalErro('O horário selecionado está fora do funcionamento da clínica (seg - sab. das 7:00 às 18:59).');
+          } else {
+            this.modalService.abrirModalErro(mensagem);
           }
-        });
-    }
-
+        }
+      });
   }
+
+}
