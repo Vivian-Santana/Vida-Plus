@@ -98,9 +98,11 @@ export class NovaConsultaComponent {
           const mensagem = this.modalService.handleApiError(err);
 
           // tratamento especial (dia ou horário fora do expediente)
-          if (/horário|funcionamento|18:59/.test(mensagem.toLowerCase())) {
+          if (mensagem.includes('já possui outra consulta')) {
+            this.modalService.abrirModalErro ('O médico já possui outra consulta agendada nesse mesmo horário.');
+          } else if (/horário|funcionamento|18:59/.test(mensagem.toLowerCase())) {
             this.modalService.abrirModalErro('O horário selecionado está fora do funcionamento da clínica (seg - sab. das 7:00 às 18:59).');
-          } else {
+          }else {
             this.modalService.abrirModalErro(mensagem);
           }
         }
