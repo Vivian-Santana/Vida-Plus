@@ -18,11 +18,11 @@ export class AppComponent {
   title = 'vidaPlus';
 
   mostrarNavbar(): boolean {
-    return !this.router.url.startsWith('/login') && !this.router.url.startsWith('/reset-senha');
+    return !this.router.url.startsWith('/login') && !this.router.url.startsWith('/reset-senha') && !this.router.url.startsWith('/cadastro-paciente');
   }
 
   mostrarFooter(): boolean {
-    return !this.router.url.startsWith('/login') && !this.router.url.startsWith('/reset-senha');
+    return !this.router.url.startsWith('/login') && !this.router.url.startsWith('/reset-senha') && !this.router.url.startsWith('/cadastro-paciente');;
   }
 
 }

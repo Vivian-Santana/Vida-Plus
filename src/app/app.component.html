@@ -1,5 +1,5 @@
 <div class="app-container">
-  <!-- só mostra a navbar se não estiver em login ou reset-senha -->
+  <!-- só mostra a navbar se não estiver em login ou reset-senha ou cadastro-->
   <ng-container *ngIf="mostrarNavbar()">
     <app-navbar></app-navbar>
   </ng-container>
@@ -8,7 +8,7 @@
      <router-outlet/>
   </main>
   
-<!-- só mostra o footer se não estiver em login ou reset-senha -->
+<!-- só mostra o footer se não estiver em login ou reset-senha ou cadastro -->
   <ng-container *ngIf="mostrarFooter()">
     <app-footer></app-footer>
   </ng-container>

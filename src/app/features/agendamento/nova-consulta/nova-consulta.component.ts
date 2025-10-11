@@ -21,10 +21,6 @@ export class NovaConsultaComponent {
   idPaciente!: number;
   usuarioCarregado = false;
 
-   // controle dos modais
-  mostrarModalSucesso = false;
-  mostrarModalErro = false;
-  mensagemModal = '';
   medicos: any;
 
   medico: Medico[] = [];

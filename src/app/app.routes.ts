@@ -36,6 +36,12 @@ export const routes: Routes = [
     canActivate: [AuthGuard]
   },
 
+    //cadastro paciente
+  {
+    path: 'cadastro-paciente',
+    loadComponent: () => import('./features/pacientes/cadastro-paciente/cadastro-paciente.component').then(m => m.CadastroPacienteComponent)
+  },
+
   // fallback
   { path: '**', redirectTo: 'home', pathMatch: 'full' }
 ];
