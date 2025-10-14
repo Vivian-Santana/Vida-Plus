@@ -4,11 +4,13 @@ import { AbstractControl, FormBuilder, FormGroup, ReactiveFormsModule, Validator
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../core/auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { AlertModalComponent } from '../../shared/alert-modal/alert-modal.component';
+import { ModalService } from '../agendamento/service/modal.service';
 
 @Component({
   selector: 'app-reset-senha',
   standalone: true,
-  imports: [RouterModule, CommonModule, ReactiveFormsModule],
+  imports: [RouterModule, CommonModule, ReactiveFormsModule, AlertModalComponent],
   templateUrl: './reset-senha.component.html',
   styleUrl: './reset-senha.component.css'
 })
@@ -19,11 +21,6 @@ resetForm: FormGroup;
   mostrarSenha = false;
   mostrarSenhaAtual = false;
   mostrarNovaSenha = false;
-  carregando = false;
-  mostrarModalSucesso = false;
-  mostrarModalErro = false;
-  mensagemModal = '';
-
 
   alternarSenhaAtual() {
     this.mostrarSenhaAtual = !this.mostrarSenhaAtual;
@@ -36,7 +33,8 @@ resetForm: FormGroup;
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private modalService: ModalService
   ) {
     this.resetForm = this.fb.group({
       senhaAtual: ['', Validators.required],
@@ -50,25 +48,19 @@ resetForm: FormGroup;
       return;
     }
 
-    this.carregando = true;
-
     const { senhaAtual, novaSenha } = this.resetForm.value;
     const payload = { senhaAtual, novaSenha };
 
     this.authService.resetSenha(payload).subscribe({
-      next: () => {
-        //console.log('Senha alterada com sucesso!');
-        this.mensagemModal = 'Senha alterada com sucesso! Você será redirecionado ao login.';
-        this.mostrarModalSucesso = true;
+      next: (res: any) => {
+        const mensagem = res?.mensagem || 'Senha alterada com sucesso!';
+        this.modalService.abrirModalSucesso(mensagem + ' Redirecionando para o login...');
         setTimeout(() => 
           this.router.navigate(['/login']), 4000);
       },
-      error: (err: HttpErrorResponse) => {
-        //console.error('Erro ao resetar senha', err);
-        this.carregando = false;
-        this.mensagemModal = err.error?.message || 'Erro ao alterar a senha.';
-        this.mostrarModalErro = true;
-        setTimeout(() => this.mostrarModalErro = false, 6000);
+        error: (err: HttpErrorResponse) => {
+          const mensagem = err?.error?.mensagem || 'Erro ao alterar senha. Tente novamente.';
+          this.modalService.abrirModalErro(mensagem);
       }
     });
   }

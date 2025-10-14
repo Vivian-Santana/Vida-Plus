@@ -11,7 +11,7 @@ export class AuthService {
 
   usuarioLogado!: UsuarioLogado | null;
 
-  private apiUrl = 'http://localhost:8080'; // URL da API
+  private apiUrl = 'http://localhost:8080/'; // URL da API
   private tokenKey = 'token_jwt'; // chave usada no localStorage
   private usuarioKey = 'usuario_logado';
 
@@ -25,7 +25,7 @@ export class AuthService {
 
   login(login: string, senha: string): Observable<{token: string}>{
     
-    return this.http.post<{ token: string }>(`${this.apiUrl}/login`, { login, senha })
+    return this.http.post<{ token: string }>(`${this.apiUrl}login`, { login, senha })
       .pipe(
         tap(response => {
             //LIMPA usuário antigo antes de salvar o token novo
@@ -74,7 +74,7 @@ export class AuthService {
       const userId = payload.id;
       const userRole = payload.role;
 
-      return this.http.get<any>(`${this.apiUrl}/pacientes/usuarios/${userId}/paciente-id`).pipe(
+      return this.http.get<any>(`${this.apiUrl}pacientes/usuarios/${userId}/paciente-id`).pipe(
         map(dados => ({
           id: userId,
           idPaciente: dados.idPaciente,
@@ -101,7 +101,7 @@ export class AuthService {
         Authorization: `Bearer ${token}`,
         'Content-Type': 'application/json'
       });
-    return this.http.patch(`${this.apiUrl}/usuarios/reset-senha`, dados, { headers });
+    return this.http.patch(`${this.apiUrl}usuarios/reset-senha`, dados, { headers });
   }
 
 }

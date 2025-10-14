@@ -100,4 +100,8 @@ h5{
   font-weight: bold;
 }
 
+.card-body a{
+  display: block;
+  margin: 5px 0;
+}
 
