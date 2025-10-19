@@ -1,4 +1,6 @@
-<div *ngIf="carregando">Carregando consultas...</div>
+<h3 class="titulo">Minhas Consultas</h3>
+
+<div class="consultas" *ngIf="carregando">Carregando consultas...</div>
 <div *ngIf="erro">{{ erro }}</div>
 
 <div class="container">
@@ -24,7 +26,7 @@
   
 </div>
 
-<div class="nenhuma_consulta" *ngIf="!carregando && !consultas.length">Você não tem nenhuma consulta agendada.</div>
+<div class="consultas" *ngIf="!carregando && !consultas.length">Você não tem nenhuma consulta agendada.</div>
 
 <!-- Modal -->
 <app-confirm-modal

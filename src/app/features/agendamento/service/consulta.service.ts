@@ -11,7 +11,7 @@ import { Medico } from '../../../models/medico.model';
 })
 export class ConsultaService {
 
-  private apiUrl = 'http://localhost:8080/'; // URL da API
+  private apiUrl = 'https://vollmed-production.up.railway.app/'; //http://localhost:8080/ URL da API
   medicos: any;
   medico: Medico[] = [];
 

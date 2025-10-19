@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 @Injectable({ providedIn: 'root' })
 export class PacienteService {
 
-  private readonly API = 'http://localhost:8080/pacientes';
+  private readonly API = 'https://vollmed-production.up.railway.app/pacientes'; // 'http://localhost:8080/pacientes'
 
   constructor(private http: HttpClient) {}
 

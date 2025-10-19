@@ -22,3 +22,11 @@ nav.navbar{
     margin-bottom: 20px;
     box-shadow: #038C8A;
 }
+
+.titulo{
+    text-align: center;
+    color: #1BA9BF;
+    font-weight: bold;
+    margin:  40px 0 20px 0;
+}
+

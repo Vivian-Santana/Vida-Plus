@@ -1,5 +1,10 @@
+.cadastro-paciente-container{
+  display: block;
+  align-items: center;
+}
+
 form {
-  max-width: 900px;
+  width: 80%;
   margin: 40px auto;
   padding: 30px;
   background-color: #ffffff;
@@ -35,9 +40,24 @@ select {
   transition: all 0.2s ease;
 }
 
+.header-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+  margin: 40px 0 20px 0;
+  width: 100%;
+}
+
 img{
-    width: 10%;
-    margin: 40px auto;
+    width: 5%;
+}
+
+h2{
+  display:inline;
+  text-align: center;
+  color: #1BA9BF;
+  font-weight: bold;
 }
 
 input:focus,
@@ -68,8 +88,49 @@ button[type="submit"]:hover {
   display: flex;
   justify-content: center;
   font-size:large;
+  margin: 10px 0 50px 0;
 }
 
 .form-check a{
   padding-right: 40px;
+}
+
+/* Media Query */
+@media (max-width: 937px){
+  img{
+    width: 10%;
+  }
+}
+
+@media (max-width: 830px) {
+  button.btn.btn-primary {
+    width: 70% !important;
+    max-width: 330px;           /* evita ultrapassar limites */
+    font-size: 16px !important; /* aumenta o tamanho da fonte */
+    padding: 14px 0 !important; /* aumenta a altura do botão */
+    display: block;
+    margin: 16px auto;          /* centraliza horizontalmente */
+    box-sizing: border-box;
+  }
+  .form-check a label{
+    font-size:smaller
+  }
+}
+
+@media (max-width: 511px){
+    .header-container {
+    flex-direction: column;   /* muda o layout para coluna */
+    align-items: center;      /* centraliza os itens horizontalmente */
+    justify-content: center;  /* centraliza verticalmente (caso precise) */
+    gap: 20px;                /* diminui o espaço entre os elementos */
+  }
+
+  .header-container img {
+    width: 20%;               /* aumenta um pouco o tamanho da logo no mobile */
+  }
+
+  .header-container h2 {
+    text-align: center;       /* garante alinhamento central */
+    font-size: 1.4rem;        /* ajusta o tamanho da fonte */
+  }
 }
