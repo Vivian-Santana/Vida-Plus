@@ -8,7 +8,7 @@ img{
 }
 
 nav {
-  box-shadow: 1px 2px 3px #038c8aa0; /* sombra verde só embaixo */
+  box-shadow: 1px 2px 3px var(--cor-turquesa-escuro); /* sombra verde só embaixo */
 }
 
 @media (max-width: 660px) {

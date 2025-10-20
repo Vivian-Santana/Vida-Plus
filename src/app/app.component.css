@@ -15,8 +15,8 @@ main {
 }
 
 footer {
-  background: #038C8A; /* exemplo */
-  color: white;
+  background: var(--cor-turquesa-escuro); /* exemplo */
+  color: var(--cor-branco-texto);
   padding: 20px;
   text-align: center;
 }

@@ -18,7 +18,7 @@
 
 /* MUDANÇA: sombra, borda suave e animação de entrada */
 .modal-content {
-  background: #fff;
+  background: var(--cor-branco-fundo);
   padding: 2rem;
   border-radius: 10px;
   width: 90%;
@@ -32,7 +32,7 @@
 
 h3{
   font-weight: bold;
-  color: #1BA9BF;
+  color: var(--cor-ciano);
   margin-bottom: 2rem;
 }
 

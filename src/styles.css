@@ -1,7 +1,22 @@
-/* You can add global styles to this file, and also import other style files */
+:root{
+    --cor-ciano: #1BA9BF;
+    --cor-ciano-claro: #4ed1e6;
+    --cor-turquesa-escuro:#038C8A;
+    --cor-branco-fundo: #ffffff;
+    --cor-cinza-gelo-fundo: #F7F7FB;
+    --cor-cinza-claro-fundo: #6f6f6f18;
+    --cor-cinza-medio: #ccc;
+    --cor-Cinza-neutro-claro: #dcdcdc;
+    --cor-preto-texto: #000000;
+    --cor-aliceblue: aliceblue;
+    --cor-branco-texto: #ffffff;
+    --cor-alert-erro: red;
+}
+
+
 body{
-    background-color: #F7F7FB;
-    color:black;
+    background-color: var(--cor-cinza-gelo-fundo);
+    color:var(--cor-texto);
     font-family: Arial, sans-serif;
 
     margin: 0;
@@ -14,18 +29,18 @@ html, body {
 }
 
 footer.bg-dark {
-  background-color: #038C8A !important;
+  background-color: var(--cor-turquesa-escuro) !important;
 }
 
 
 nav.navbar{
     margin-bottom: 20px;
-    box-shadow: #038C8A;
+    box-shadow: var(--cor-turquesa-escuro);
 }
 
 .titulo{
     text-align: center;
-    color: #1BA9BF;
+    color: var(--cor-ciano);
     font-weight: bold;
     margin:  40px 0 20px 0;
 }

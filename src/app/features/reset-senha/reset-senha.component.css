@@ -3,7 +3,7 @@
   justify-content: center; /* centraliza horizontalmente */
   align-items: center;     /* centraliza verticalmente */
   height: 100vh;           /* necessário para ocupar a altura total da tela */
-  background-color:#6f6f6f18;
+  background-color:var(--cor-cinza-claro-fundo);
 }
 
 img{
@@ -19,7 +19,7 @@ form{
 }
 
 label{
-    color: #000;
+    color: var(--cor-preto-texto);
     font-size: small;
 }
 
@@ -28,27 +28,27 @@ a{
 }
 
 .alerta{
-    color: red;
+    color: var(--cor-alert-erro);
 }
 
 .btn {
   display: block;
   margin: 20px auto;  /* centraliza */
   width: 100%;         /* largura maior */
-  background-color: #1BA9BF;
-  border-color: #1BA9BF;
+  background-color: var(--cor-ciano);
+  border-color: var(--cor-ciano);
   font-weight: bold;
-  color: aliceblue;
+  color: var(--cor-branco-texto);
 }
 
 .btn:hover {
-  background-color: #1BC9E4;
-  border-color: #1BC9E4;
-  color: white;
+  background-color: var(--cor-ciano);
+  border-color: var(--cor-ciano);
+  color: var(--cor-branco-texto);
 }
 
 .btn:active{
-    background-color: #037A8C;
+    background-color: var(--cor-turquesa-escuro);
 }
 
 /*olhinho ícone do font awesome import via CDN*/
