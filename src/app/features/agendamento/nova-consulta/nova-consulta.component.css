@@ -49,8 +49,8 @@ button{
   }
 
 
-  :host ::ng-deep select {
-
+  :host ::ng-deep .container {
+    min-width: 300px;
   }
 
   :host ::ng-deep label{
@@ -86,26 +86,41 @@ button{
     width: 50%;
     padding: 10px;
  }
+
+ :host ::ng-deep .btn{
+    width: 100%;
+    padding: 10px;
+    width: 60%;
+    padding: 10px;
+    min-width: 100px;
+  }
   
 }
 
 
-@media(max-width: 460px){
+@media(max-width: 504px){
     :host ::ng-deep div.container {
     flex-direction: column !important;
     width: 100%;
   }
 
   :host ::ng-deep select,
-  :host ::ng-deep button {
+  :host ::ng-deep button,
+  :host ::ng-deep label {
     display: flex;
     justify-content:flex-start;
     width: 80%;
     margin-top: 10px;
   }
 
-  :host ::ng-deep label{
-    margin: 10px 0 0px 0;
+  :host ::ng-deep input{
+    margin-top: 5px;
+  }
+
+  :host ::ng-deep .btn{
+    width: 60%;
+    padding: 10px;
+    font-weight: bold;
   }
 
 }
