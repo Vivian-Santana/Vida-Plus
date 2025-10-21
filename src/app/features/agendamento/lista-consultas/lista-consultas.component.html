@@ -14,9 +14,9 @@
     </thead>
     <tbody>
       <tr *ngFor="let consulta of consultas">
-        <td>{{ consulta.especialidade }}</td>
-        <td>{{ consulta.nomeMedico }}</td>
-        <td>{{ consulta.data | date: 'dd/MM/yyyy HH:mm' }}</td>
+        <td data-label="Especialidade">{{ consulta.especialidade }}</td>
+        <td data-label="Médico">{{ consulta.nomeMedico }}</td>
+        <td data-label="Data e Hora">{{ consulta.data | date: 'dd/MM/yyyy HH:mm' }}</td>
         <td class="td-btn">
           <button class="btn btn-outline-danger my-2 my-sm-0" (click)="abrirConfirmacao(consulta)">Cancelar</button>
         </td>

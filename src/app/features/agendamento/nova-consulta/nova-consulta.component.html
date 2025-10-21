@@ -1,48 +1,58 @@
 <h3 class="titulo">Agendar Consulta</h3>
 
-<div class="container">
+<div class="container form-agendamento" id="form-agendamento">
     <form class="form-group" [formGroup]="consultaForm" (ngSubmit)="agendar()">
 
-    <label for="especialidade">Especialidade</label>
-   <select formControlName="especialidade" class="custom-select">
-    <option disabled selected>Especialidades</option>
-        <option value="ALERGOLOGIA">Alergologia</option>
-        <option value="CARDIOLOGIA">Cardiologia</option>
-        <option value="CLINICO">Clínico</option>
-        <option value="CIRURGIA_GERAL">Cirurgia Geral</option>
-        <option value="DERMATOLOGIA">Dermatologia</option>
-        <option value="GASTROENTEROLOGIA">Gastroenterologia</option>
-        <option value="GERIATRIA">Geriatria</option>
-        <option value="GINECOLOGIA">Ginecologia</option>
-        <option value="HEMATOLOGIA">Hematologia</option>
-        <option value="NEFROLOGIA">Nefrologia</option>
-        <option value="NEUROLOGIA">Neurologia</option>
-        <option value="OBSTETRICIA">Obstetrícia</option>
-        <option value="OFTALMOLOGIA">Oftalmologia</option>
-        <option value="ONCOLOGIA">Oncologia</option>
-        <option value="ORTOPEDIA">Ortopedia</option>
-        <option value="OTORRINOLARINGOLOGIA">Otorrinolaringologia</option>
-        <option value="PEDIATRIA">Pediatria</option>
-        <option value="PNEUMOLOGIA">Pneumologia</option>
-        <option value="PSICOLOGIA">Psicologia</option>
-        <option value="PSIQUIATRIA">Psiquiatria</option>
-        <option value="UROLOGIA">Urologia</option>
-        <option value="VASCULAR">Vascular</option>
-  </select>
+      <div class="especialidade">
+        <label for="especialidade">Especialidade</label>
+        <select formControlName="especialidade" class="custom-select">
+          <option disabled selected>Especialidades</option>
+              <option value="ALERGOLOGIA">Alergologia</option>
+              <option value="CARDIOLOGIA">Cardiologia</option>
+              <option value="CLINICO">Clínico</option>
+              <option value="CIRURGIA_GERAL">Cirurgia Geral</option>
+              <option value="DERMATOLOGIA">Dermatologia</option>
+              <option value="GASTROENTEROLOGIA">Gastroenterologia</option>
+              <option value="GERIATRIA">Geriatria</option>
+              <option value="GINECOLOGIA">Ginecologia</option>
+              <option value="HEMATOLOGIA">Hematologia</option>
+              <option value="NEFROLOGIA">Nefrologia</option>
+              <option value="NEUROLOGIA">Neurologia</option>
+              <option value="OBSTETRICIA">Obstetrícia</option>
+              <option value="OFTALMOLOGIA">Oftalmologia</option>
+              <option value="ONCOLOGIA">Oncologia</option>
+              <option value="ORTOPEDIA">Ortopedia</option>
+              <option value="OTORRINOLARINGOLOGIA">Otorrinolaringologia</option>
+              <option value="PEDIATRIA">Pediatria</option>
+              <option value="PNEUMOLOGIA">Pneumologia</option>
+              <option value="PSICOLOGIA">Psicologia</option>
+              <option value="PSIQUIATRIA">Psiquiatria</option>
+              <option value="UROLOGIA">Urologia</option>
+              <option value="VASCULAR">Vascular</option>
+        </select>
+      </div>
+    
 
-  <label for="nomeMedico">Médico</label>
-  <select id="nomeMedico" formControlName="nomeMedico" class="custom-select">
-    <option value="" disabled selected>Selecione um médico</option>
-    <option *ngFor="let medico of medicos" [value]="medico.nome">
-      {{ medico.nome }}
-    </option>
-  </select>
+      <div class="medico">
+        <label for="nomeMedico">Médico</label>
+        <select id="nomeMedico" formControlName="nomeMedico" class="custom-select">
+          <option value="" disabled selected>Selecione um médico</option>
+          <option *ngFor="let medico of medicos" [value]="medico.nome">
+            {{ medico.nome }}
+          </option>
+        </select>
+      </div>
 
-
-  <label for="data">Data</label>
+  <div class="data">
+    <label for="data">Data</label>
     <input id="data" formControlName="data" type="datetime-local">
+  </div>
+  
 
-    <button class="btn btn-outline-success" type="submit" [disabled]="consultaForm.invalid">Agendar</button>
+    <div class="btn">
+      <button class="btn btn-outline-success" type="submit" [disabled]="consultaForm.invalid">Agendar</button>
+    </div>
+    
   </form>
 </div>
 
