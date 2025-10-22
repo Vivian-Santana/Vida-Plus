@@ -1,0 +1,51 @@
+<h3 class="titulo">Médicos</h3>
+<div class="container" >
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Especialidade</th>
+                <th>CRM</th>
+            </tr>
+        </thead>
+        
+
+        <tbody *ngIf="medicos.length > 0; else semMedicos">
+            <tr *ngFor="let medico of medicos">
+                <td>{{ medico.nome }}</td>
+                <td>{{ medico.especialidade }}</td>
+                <td>{{ medico.crm }}</td>
+            </tr> 
+        </tbody>
+          
+    </table>
+<div>
+
+<nav *ngIf="totalPaginas > 1" aria-label="Navegação de página"> <!--só exibe a paginação se houver mais de uma página de resultados. o Angular só renderiza a <nav> se o backend realmente retornar totalPages > 1-->
+    <ul class="pagination justify-content-center mt-3">
+
+        <!-- Botão Anterior -->
+        <li class="page-item" [class.disabled]="paginaAtual === 0">
+        <a class="page-link" href="#" (click)="paginaAnterior($event)">Anterior</a>
+        </li>
+
+        <!-- Números das páginas -->
+        <li 
+        *ngFor="let p of paginasArray(); let i = index" 
+        class="page-item" 
+        [class.active]="i === paginaAtual"
+        >
+        <a class="page-link" href="#" (click)="irParaPagina(i, $event)">{{ i + 1 }}</a>
+        </li>
+
+        <!-- Botão Próxima -->
+        <li class="page-item" [class.disabled]="paginaAtual + 1 >= totalPaginas">
+        <a class="page-link" href="#" (click)="proximaPagina($event)">Próximo</a>
+        </li>
+    </ul>
+</nav>
+
+<ng-template #semMedicos>
+  <p>Nenhum médico encontrado.</p>
+</ng-template>

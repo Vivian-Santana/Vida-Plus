@@ -11,7 +11,7 @@ export class AuthService {
 
   usuarioLogado!: UsuarioLogado | null;
 
-  private apiUrl = 'https://vollmed-production.up.railway.app/'; // http://localhost:8080/ URL da API
+  private apiUrl = 'https://vollmed-production.up.railway.app/'; //http://localhost:8080/
   private tokenKey = 'token_jwt'; // chave usada no localStorage
   private usuarioKey = 'usuario_logado';
 

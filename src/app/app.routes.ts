@@ -42,6 +42,13 @@ export const routes: Routes = [
     loadComponent: () => import('./features/pacientes/cadastro-paciente/cadastro-paciente.component').then(m => m.CadastroPacienteComponent)
   },
 
+  // lista de médicos - protegida
+  {
+    path: 'medicos',
+    loadComponent: () => import('./features/medicos-lista/medicos-lista.component').then(m => m.MedicosListaComponent),
+    canActivate: [AuthGuard]
+  },
+
   // fallback
   { path: '**', redirectTo: 'home', pathMatch: 'full' }
 ];
