@@ -15,3 +15,30 @@ table th, table td {
     text-align: left;
     border-bottom: 1px solid #ddd;
 }
+
+/* Cor base dos links da paginação */
+.pagination .page-link {
+  color: var(--cor-verde-azulado-escuro);
+  border-color: var(--cor-verde-azulado-escuro);
+}
+
+/* Hover: fundo ciano escuro e texto branco */
+.pagination .page-link:hover {
+  color: var(--cor-branco-fundo);
+  background-color: var(--cor-ciano-escuro);
+  border-color: var(--cor-ciano-escuro);
+}
+
+/* Página ativa: mantém o mesmo efeito do hover */
+.pagination .page-item.active .page-link {
+  background-color: var(--cor-ciano-escuro);
+  border-color: var(--cor-ciano-escuro);
+  color: var(--cor-branco-fundo);
+}
+
+/* Desabilitado: mantém estilo Bootstrap, mas personaliza com o tema */
+.pagination .page-item.disabled .page-link {
+  color: #999;
+  background-color: #f1f1f1;
+  border-color: #ccc;
+}

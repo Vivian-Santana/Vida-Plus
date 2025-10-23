@@ -32,7 +32,6 @@
         </select>
       </div>
     
-
       <div class="medico">
         <label for="nomeMedico">Médico</label>
         <select id="nomeMedico" formControlName="nomeMedico" class="custom-select">
@@ -43,17 +42,17 @@
         </select>
       </div>
 
-  <div class="data">
-    <label for="data">Data</label>
-    <input id="data" formControlName="data" type="datetime-local">
-  </div>
+      <div class="data">
+        <label for="data">Data</label>
+        <input id="data" formControlName="data" type="datetime-local">
+      </div>
   
 
-    <div class="btn">
-      <button class="btn btn-outline-success" type="submit" [disabled]="consultaForm.invalid">Agendar</button>
-    </div>
+      <div class="btn">
+        <button class="btn btn-outline-success" type="submit" [disabled]="consultaForm.invalid">Agendar</button>
+      </div>
     
-  </form>
+    </form>
 </div>
 
 <router-outlet></router-outlet>

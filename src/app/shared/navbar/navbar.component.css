@@ -7,6 +7,15 @@ img{
     font-weight: bold;
 }
 
+.navbar .nav-link {
+  color: var(--cor-ciano) !important;
+}
+
+.navbar .nav-link:hover {
+  color: var(--cor-verde-azulado-escuro) !important;
+}
+
+
 nav {
   box-shadow: 1px 2px 3px var(--cor-turquesa-escuro); /* sombra verde só embaixo */
 }
