@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class MedicoService {
-  private apiUrl = ' http://localhost:8080/medicos'; //'https://vollmed-production.up.railway.app/medicos'
+  private apiUrl = 'https://vollmed-production.up.railway.app/medicos'; //'http://localhost:8080/medicos'
 
   constructor(private http: HttpClient) {}
 
