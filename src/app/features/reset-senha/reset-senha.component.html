@@ -11,9 +11,9 @@
                [type]="mostrarSenhaAtual ? 'text' : 'password'"
                class="form-control"
                formControlName="senhaAtual"
-               placeholder="Digite sua senha atual" />
+               placeholder="Digite sua senha atual"
+        />
         <i class="fa-solid"
-           *ngIf="senhaAtual?.value"
            [ngClass]="mostrarSenhaAtual ? 'fa-eye' : 'fa-eye-slash'"
            (click)="alternarSenhaAtual()">
         </i>
@@ -33,7 +33,6 @@
                formControlName="novaSenha"
                placeholder="Digite sua nova senha" />
         <i class="fa-solid"
-           *ngIf="novaSenha?.value"
            [ngClass]="mostrarNovaSenha ? 'fa-eye' : 'fa-eye-slash'"
            (click)="alternarNovaSenha()">
         </i>
@@ -43,7 +42,7 @@
       </div>
     </div>
 
-    <button type="submit" class="btn btn-primary w-100 mt-4">
+    <button type="submit" class="btn btn-info">
       Alterar Senha
     </button>
 

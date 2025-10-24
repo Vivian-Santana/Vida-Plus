@@ -25,9 +25,18 @@
         
         <div class="form-group col-md-4">
           <label for="inputSenha">Senha</label>
-          <input type="password" formControlName="senha" class="form-control" id="inputSenha" placeholder="Crie uma senha">
+          <input [type]="mostrarSenha ? 'text' : 'password'" 
+          formControlName="senha" 
+          class="form-control pr-5" 
+          id="inputSenha" 
+          placeholder="Crie uma senha">
+          <!--olho-->
+          <i class="fa-solid"
+              [ngClass]="mostrarSenha ? 'fa-eye' : 'fa-eye-slash'"
+              (click)="alternarSenha()">
+          </i>
         </div>
-
+        
         <div class="form-group col-md-4">
           <label for="inputTelefone">Telefone</label>
           <input type="Telefone" formControlName="telefone" class="form-control" id="inputTelefone" placeholder="Telefone">
@@ -81,7 +90,7 @@
 
     <div class="form-group">
       <div class="form-check">
-        <a href="/">Privacidade e Termos de uso</a>
+        <a href="/cadastro-paciente">Privacidade e Termos de uso</a>
         <input class="form-check-input" type="checkbox" id="gridCheck">
         <label class="form-check-label" for="gridCheck">
           Li e Concordo com os termos de uso
@@ -89,11 +98,11 @@
       </div>
     </div>
 
-    <button type="submit" class="btn btn-primary">Cadastrar</button>
+    <button type="submit" class="btn btn-info">Cadastrar</button>
   </form>
 
   <div class="VoltarLogin">
-    <a href="/src/app/features/login/login.component.html">Voltar ao login</a>
+    <a href="/login">Voltar ao login</a>
   </div>
 
 </div>

@@ -26,10 +26,21 @@ form {
 }
 
 label {
+  display: flex;
+  justify-content: left;
   font-weight: 600;
-  color: #333333;
+  color: var(--cor-verde-azulado-escuro);
   margin-bottom: 5px;
 }
+
+.form-check-label{
+  display: inline;
+}
+
+.form-check-input {
+  accent-color: var(--cor-ciano);
+}
+
 
 input,
 select {
@@ -67,22 +78,15 @@ select:focus {
   box-shadow: 0 0 4px rgba(3, 234, 222, 0.58);
 }
 
-button[type="submit"] {
-  display: block;
-  width: 30%;
-  margin: 20px auto 0;
-  padding: 10px;
-  font-weight: 600;
-  border-radius: 6px;
-  background-color: var(--cor-ciano);
-  border: none;
-  color: var(--cor-branco-fundo);
-  transition: background-color 0.2s ease;
+form {
+  text-align: center;
 }
 
-button[type="submit"]:hover {
-  background-color: var(--cor-ciano);
+form button {
+  display: inline-block;
+  font-weight: bold;
 }
+
 
 .VoltarLogin{
   display: flex;
@@ -94,6 +98,24 @@ button[type="submit"]:hover {
 .form-check a{
   padding-right: 40px;
 }
+
+/*olho*/
+.form-group {
+  position: relative;
+}
+
+.form-group i {
+  position: absolute;
+  right: 15px;
+  top: 38px;
+  cursor: pointer;
+  color: var(--cor-verde-azulado-escuro);
+}
+
+.form-group i:hover {
+  color: var(--cor-ciano-medio);
+}
+
 
 /* Media Query */
 @media (max-width: 937px){
@@ -132,5 +154,9 @@ button[type="submit"]:hover {
   .header-container h2 {
     text-align: center;       /* garante alinhamento central */
     font-size: 1.4rem;        /* ajusta o tamanho da fonte */
+  }
+
+    .form-check-label{
+    display:block;
   }
 }

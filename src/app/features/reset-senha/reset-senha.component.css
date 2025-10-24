@@ -13,14 +13,15 @@ img{
 
 form{
     justify-content: center;
-    width: 400px;       /* largura do formulário */
+    width: 400px;
     height: 560px;
-    margin: 0 auto;     /* centraliza na tela */
+    margin: 0 auto;
 }
 
 label{
-    color: var(--cor-preto-texto);
+    color: var(--cor-verde-azulado-escuro);
     font-size: small;
+    font-weight: bolder;
 }
 
 a{
@@ -31,27 +32,38 @@ a{
     color: var(--cor-alert-erro);
 }
 
-.btn {
-  display: block;
-  margin: 20px auto;  /* centraliza */
-  width: 100%;         /* largura maior */
-  background-color: var(--cor-ciano);
-  border-color: var(--cor-ciano);
+form button{
+  width: 100%;
   font-weight: bold;
-  color: var(--cor-branco-texto);
+  background-color: var(--cor-ciano);
+  margin-top: 5px;
 }
 
-.btn:hover {
-  background-color: var(--cor-ciano);
+form button:hover {
+  background-color: var( --cor-ciano-escuro);
   border-color: var(--cor-ciano);
-  color: var(--cor-branco-texto);
+  color: var(--cor-aliceblue);
 }
+
+.btn:active{
+    background-color: var(--cor-ciano-escuro)!important;
+}
+
 
 .btn:active{
     background-color: var(--cor-turquesa-escuro);
 }
 
 /*olhinho ícone do font awesome import via CDN*/
+
+.form-group i{
+  cursor: pointer;
+  color: var(--cor-verde-azulado-escuro)!important;
+}
+
+.form-group i:hover {
+  color: var(--cor-ciano-medio)!important;
+}
 
 .input-wrapper {
   position: relative;

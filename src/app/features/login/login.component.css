@@ -3,7 +3,7 @@
   justify-content: center; /* centraliza horizontalmente */
   align-items: center;     /* centraliza verticalmente */
   height: 100vh;           /* necessário para ocupar a altura total da tela */
-  background-color:#6f6f6f18;
+  background-color:var(--cor-cinza-claro-fundo);
 }
 
 img{
@@ -19,8 +19,9 @@ form{
 }
 
 label{
-    color: var(--cor-preto-texto);
+    color: var(--cor-verde-azulado-escuro);
     font-size: small;
+    font-weight: bolder;
 }
 
 a{
@@ -31,24 +32,21 @@ a{
     color: var(--cor-alert-erro);
 }
 
-.btn {
-  display: block;
-  margin: 20px auto;  /* centraliza */
-  width: 100%;         /* largura maior */
-  background-color: var(--cor-ciano);
-  border-color: var(--cor-ciano);
+form button{
+  width: 100%;
   font-weight: bold;
-  color: var(--cor-aliceblue);
+  background-color: var(--cor-ciano);
+  margin: 5px 0 10px 0;
 }
 
-.btn:hover {
-  background-color: var(--cor-ciano);
+form button:hover {
+  background-color: var( --cor-ciano-escuro);
   border-color: var(--cor-ciano);
   color: var(--cor-aliceblue);
 }
 
 .btn:active{
-    background-color: var(--cor-ciano-escuro);
+    background-color: var(--cor-ciano-escuro)!important;
 }
 
 /*olhinho ícone do font awesome import via CDN*/
@@ -56,6 +54,15 @@ a{
 .input-wrapper {
   position: relative;
   width: 100%;
+}
+
+.form-group i {
+  cursor: pointer;
+  color: var(--cor-verde-azulado-escuro);
+}
+
+.form-group i:hover {
+  color: var(--cor-ciano-medio);
 }
 
 .input-wrapper input {
@@ -72,7 +79,6 @@ a{
   right: 15px;
   transform: translateY(50%); /* centraliza no input */
   cursor: pointer;
-  color: #555;
 }
 
 .modal-overlay {

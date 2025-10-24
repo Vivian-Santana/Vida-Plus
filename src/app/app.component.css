@@ -21,3 +21,19 @@ footer {
   text-align: center;
 }
 
+/*olho*/
+.form-group {
+  position: relative;
+}
+
+.form-group i {
+  position: absolute;
+  right: 15px;
+  top: 38px;
+  cursor: pointer;
+  color: var(--cor-verde-azulado-escuro);
+}
+
+.form-group i:hover {
+  color: var(--cor-ciano-medio);
+}
