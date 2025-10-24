@@ -37,3 +37,14 @@ footer {
 .form-group i:hover {
   color: var(--cor-ciano-medio);
 }
+
+.card img{
+  width: 50%;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.card p{
+   font-weight: bold;
+   color: var(--cor-verde-azulado-escuro)!important;
+}

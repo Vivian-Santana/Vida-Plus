@@ -48,3 +48,13 @@ nav.navbar{
     margin:  40px 0 20px 0;
 }
 
+.card img{
+  width: 50%;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.card p{
+   font-weight: bold;
+   color: var(--cor-verde-azulado-escuro)!important;
+}
