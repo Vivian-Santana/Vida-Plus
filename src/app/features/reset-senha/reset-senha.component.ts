@@ -54,9 +54,7 @@ resetForm: FormGroup;
     this.authService.resetSenha(payload).subscribe({
       next: (res: any) => {
         const mensagem = res?.mensagem || 'Senha alterada com sucesso!';
-        this.modalService.abrirModalSucesso(mensagem + ' Redirecionando para o login...');
-        setTimeout(() => 
-          this.router.navigate(['/login']), 4000);
+        this.modalService.abrirModalSucesso(mensagem);
       },
         error: (err: HttpErrorResponse) => {
           const mensagem = err?.error?.mensagem || 'Erro ao alterar senha. Tente novamente.';

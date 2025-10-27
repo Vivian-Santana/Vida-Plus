@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { AuthService } from '../../../core/auth.service';
-import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { ModalService } from '../service/modal.service';
 import { AlertModalComponent } from '../../../shared/alert-modal/alert-modal.component';
@@ -42,9 +41,9 @@ export class NovaConsultaComponent {
       if (usuario) {
         this.idPaciente = usuario.idPaciente;
         this.usuarioCarregado = true;
-        console.log('idPaciente carregado:', this.idPaciente); //debug
+        //console.log('idPaciente carregado:', this.idPaciente); //debug
       } else {
-        console.error('Erro: idPaciente não carregado');
+        //console.error('Erro: idPaciente não carregado');
       }
     });
 
@@ -53,7 +52,9 @@ export class NovaConsultaComponent {
   
   carregarMedicos(): void {
     this.consultaService.listarMedicos().subscribe({
-      next: (lista) => this.medicos = lista
+      next: (lista) => {
+        this.medicos = lista;
+      },
     });
   }
 
