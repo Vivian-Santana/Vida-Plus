@@ -52,12 +52,12 @@ export class LoginComponent {
         //chama carregarUsuarioLogado() em vez de getUsuarioLogado()
         this.authService.carregarUsuarioLogado().subscribe(usuario => {
           if (usuario) {
-            console.log('Usuário logado:', usuario);
+            //console.log('Usuário logado:', usuario);
 
             //redireciona só depois que usuário é carregado
             const redirect = localStorage.getItem('redirecionarAposLogin') || '/home';
             localStorage.removeItem('redirecionarAposLogin');
-            console.log('Redirecionando para:', redirect);
+            //console.log('Redirecionando para:', redirect);
             this.router.navigate([redirect]);
           } else {
             alert('Erro ao carregar informações do usuário.');

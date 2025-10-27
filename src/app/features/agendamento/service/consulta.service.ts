@@ -23,10 +23,7 @@ export class ConsultaService {
   }
 
   listarMedicos(): Observable<Medico[]> {
-    return this.http.get<{ content: Medico[] }>(`${this.apiUrl}medicos`).pipe(
-      // map() → transforma os dados emitidos pelo Observable antes de enviar para o componente
-      map(response => response.content), //extrai o array content da resposta da API.
-      // catchError() → intercepta erros da requisição HTTP
+    return this.http.get<Medico[]>(`${this.apiUrl}medicos/todos`).pipe(
       catchError(erro => {
         return throwError(() => new Error('Erro ao carregar médicos.'));
       })
