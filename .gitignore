@@ -65,3 +65,6 @@ karma-coverage/
 # Arquivos gerados por build
 *.tgz
 build/
+
+# dir envireoments
+/src/environments/

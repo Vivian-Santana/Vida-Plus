@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class MedicoService {
-  private apiUrl = 'https://vollmed-production.up.railway.app/medicos'; //'http://localhost:8080/medicos'
+  private readonly API = `${environment.apiUrl}medicos`;
 
   constructor(private http: HttpClient) {}
 
@@ -19,6 +20,6 @@ export class MedicoService {
       .set('size', tamanho.toString())
       .set('sort', 'nome,asc');
 
-    return this.http.get<any>(this.apiUrl, { headers, params });
+    return this.http.get<any>(this.API, { headers, params });
   }
 }

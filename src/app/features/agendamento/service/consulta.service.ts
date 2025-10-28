@@ -5,13 +5,14 @@ import { catchError, map, Observable, tap, throwError } from 'rxjs';
 import { Consulta } from '../agendamento-model/consulta.model';
 import { ModalService } from './modal.service';
 import { Medico } from '../../../models/medico.model';
+import { environment } from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ConsultaService {
 
-  private apiUrl = 'https://vollmed-production.up.railway.app/'; //http://localhost:8080/
+  private apiUrl = environment.apiUrl;
   medicos: any;
   medico: Medico[] = [];
 
