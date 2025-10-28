@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, Observable, of, tap } from 'rxjs';
 import { UsuarioLogado } from '../models/usuario-logado.model';
+import { environment } from '../../environments/environment';
 
 
 @Injectable({ providedIn: 'root' })
@@ -11,7 +12,7 @@ export class AuthService {
 
   usuarioLogado!: UsuarioLogado | null;
 
-  private apiUrl = 'https://vollmed-production.up.railway.app/'; //http://localhost:8080/
+  private apiUrl = environment.apiUrl;
   private tokenKey = 'token_jwt'; // chave usada no localStorage
   private usuarioKey = 'usuario_logado';
 
@@ -81,7 +82,7 @@ export class AuthService {
           role: userRole,
         })),
         tap(u => {
-          console.log('UsuarioLogado carregado da API:', u);
+          //console.log('UsuarioLogado carregado da API:', u);
           this.usuarioLogado = u as UsuarioLogado;
           localStorage.setItem(this.usuarioKey, JSON.stringify(this.usuarioLogado));
         }),

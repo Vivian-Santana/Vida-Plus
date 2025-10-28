@@ -45,7 +45,7 @@ export class LoginComponent {
 
     this.authService.login(username, password).subscribe({
       next: (response: any) => {
-        console.log('Login bem-sucedido!', response);
+        //console.log('Login bem-sucedido!', response);
 
         //o token já é salvo no AuthService.login()
 
