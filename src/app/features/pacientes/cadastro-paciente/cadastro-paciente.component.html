@@ -9,24 +9,27 @@
     <div class="form-row">
       <div class="form-group col-md-6">
         <label for="inputNomeCompleto">Nome Completo</label>
-        <input type="text" formControlName="nome" class="form-control" id="inputNomeCompleto" placeholder="Nome Completo">
+        <input type="text" formControlName="nome" campoObrigatorio [formSubmitted]="formSubmitted" class="form-control" id="inputNomeCompleto" placeholder="Nome Completo">
       </div>
       <div class="form-group col-md-6">
         <label for="inputEmail">Email</label>
-        <input type="email" formControlName="email" class="form-control" id="inputEmail" placeholder="Email">
+        <input type="email" formControlName="email" campoObrigatorio [formSubmitted]="formSubmitted" class="form-control" id="inputEmail" placeholder="Email">
       </div>
     </div>
 
     <div class="form-row">
         <div class="form-group col-md-4">
           <label for="inputCPF">CPF</label>
-          <input type="text" formControlName="cpf" class="form-control" id="inputCPF" placeholder="CPF">
+          <input type="text" formControlName="cpf" campoObrigatorio [formSubmitted]="formSubmitted" class="form-control" id="inputCPF" placeholder="CPF">
+          <div class="text-danger" *ngIf="formSubmitted && cadastroForm.get('cpf')?.hasError('pattern')">
+            CPF deve conter 11 dígitos numéricos, sem pontos e espaços.
+          </div>
         </div>
         
         <div class="form-group col-md-4">
           <label for="inputSenha">Senha</label>
           <input [type]="mostrarSenha ? 'text' : 'password'" 
-          formControlName="senha" 
+          formControlName="senha" campoObrigatorio [formSubmitted]="formSubmitted"
           class="form-control pr-5" 
           id="inputSenha" 
           placeholder="Crie uma senha">
@@ -35,11 +38,14 @@
               [ngClass]="mostrarSenha ? 'fa-eye' : 'fa-eye-slash'"
               (click)="alternarSenha()">
           </i>
+          <div class="text-danger" *ngIf="formSubmitted && cadastroForm.get('senha')?.hasError('minlength')">
+            A senha deve ter pelo menos 6 caracteres.
+          </div>
         </div>
         
         <div class="form-group col-md-4">
           <label for="inputTelefone">Telefone</label>
-          <input type="Telefone" formControlName="telefone" class="form-control" id="inputTelefone" placeholder="Telefone">
+          <input type="Telefone" formControlName="telefone" campoObrigatorio [formSubmitted]="formSubmitted" class="form-control" id="inputTelefone" placeholder="Telefone">
         </div>
       </div>
     
@@ -47,15 +53,15 @@
         <div class="form-row">
           <div class="form-group col-md-5">
               <label for="inputLogradouro">Endereço</label>
-              <input type="text" formControlName="logradouro" class="form-control" id="inputLogradouro" placeholder="Rua"><!--logradouro-->
+              <input type="text" formControlName="logradouro" campoObrigatorio [formSubmitted]="formSubmitted" class="form-control" id="inputLogradouro" placeholder="Rua"><!--logradouro-->
           </div>
           <div class="form-group col-md-4">
               <label for="inputBairro">Bairro</label>
-              <input type="text" formControlName="bairro" class="form-control" id="inputBairro" placeholder="Bairro">
+              <input type="text" formControlName="bairro" campoObrigatorio [formSubmitted]="formSubmitted" class="form-control" id="inputBairro" placeholder="Bairro">
           </div>
           <div class="form-group col-md-3">
               <label for="inputNumero">Número</label>
-              <input type="text" formControlName="numero" class="form-control" id="inputNumero" placeholder="Numero">
+              <input type="text" formControlName="numero" campoObrigatorio [formSubmitted]="formSubmitted" class="form-control" id="inputNumero" placeholder="Numero">
           </div>
       </div>
   
@@ -67,16 +73,19 @@
 
       <div class="form-group col-md-3">
           <label for="inputCEP">CEP</label>
-          <input type="text" formControlName="cep" class="form-control" id="inputCEP" placeholder="CEP">
+          <input type="text" formControlName="cep" campoObrigatorio [formSubmitted]="formSubmitted" class="form-control" id="inputCEP" placeholder="CEP">
+          <div class="text-danger" *ngIf="formSubmitted && cadastroForm.get('endereco.cep')?.hasError('pattern')">
+            CEP deve conter 8 dígitos numéricos, sem pontos e espaços.
+          </div>
       </div>
 
           <div class="form-group col-md-4">
           <label for="inputCidade">Cidade</label>
-          <input type="text" formControlName="cidade" class="form-control" id="inputCidade" placeholder="Cidade">
+          <input type="text" formControlName="cidade" campoObrigatorio [formSubmitted]="formSubmitted" class="form-control" id="inputCidade" placeholder="Cidade">
           </div>
           <div class="form-group col-md-1">
           <label for="inputUF">UF</label>
-          <select id="inputUF" formControlName="uf" class="form-control">
+          <select id="inputUF" campoObrigatorio [formSubmitted]="formSubmitted" formControlName="uf" class="form-control">
               <option disabled selected>Escolher</option>
               <option>DF</option>
               <option>BA</option>
