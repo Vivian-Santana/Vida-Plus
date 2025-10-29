@@ -56,7 +56,7 @@ resetForm: FormGroup;
         this.modalService.abrirModalSucesso(mensagem);
       },
         error: (err: HttpErrorResponse) => {
-          const mensagem = err?.error?.mensagem || 'Erro ao alterar senha. Tente novamente.';
+          const mensagem = err?.error?.erro || 'Erro ao alterar senha. Tente novamente.';
           this.modalService.abrirModalErro(mensagem);
       }
     });

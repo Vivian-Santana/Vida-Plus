@@ -9,7 +9,10 @@
     <div class="form-row">
       <div class="form-group col-md-6">
         <label for="inputNomeCompleto">Nome Completo</label>
-        <input type="text" formControlName="nome" campoObrigatorio [formSubmitted]="formSubmitted" class="form-control" id="inputNomeCompleto" placeholder="Nome Completo">
+        <input type="text" formControlName="nome"  class="form-control" id="inputNomeCompleto" placeholder="Nome Completo"
+        campoObrigatorio 
+        [formSubmitted]="formSubmitted" 
+        [mensagensErro]= "{ required: 'Por favor, informe seu nome completo.'}">
       </div>
       <div class="form-group col-md-6">
         <label for="inputEmail">Email</label>
@@ -20,10 +23,10 @@
     <div class="form-row">
         <div class="form-group col-md-4">
           <label for="inputCPF">CPF</label>
-          <input type="text" formControlName="cpf" campoObrigatorio [formSubmitted]="formSubmitted" class="form-control" id="inputCPF" placeholder="CPF">
-          <div class="text-danger" *ngIf="formSubmitted && cadastroForm.get('cpf')?.hasError('pattern')">
-            CPF deve conter 11 dígitos numéricos, sem pontos e espaços.
-          </div>
+          <input type="text" formControlName="cpf" class="form-control" id="inputCPF" placeholder="CPF"
+          campoObrigatorio
+          [formSubmitted]="formSubmitted"
+          [mensagensErro]="{ pattern: 'CPF deve conter 11 dígitos numéricos, sem pontos ou espaços.' }"> 
         </div>
         
         <div class="form-group col-md-4">
@@ -73,10 +76,10 @@
 
       <div class="form-group col-md-3">
           <label for="inputCEP">CEP</label>
-          <input type="text" formControlName="cep" campoObrigatorio [formSubmitted]="formSubmitted" class="form-control" id="inputCEP" placeholder="CEP">
-          <div class="text-danger" *ngIf="formSubmitted && cadastroForm.get('endereco.cep')?.hasError('pattern')">
-            CEP deve conter 8 dígitos numéricos, sem pontos e espaços.
-          </div>
+          <input type="text" formControlName="cep" campoObrigatorio [formSubmitted]="formSubmitted" class="form-control" id="inputCEP" placeholder="CEP"
+          campoObrigatorio
+          [formSubmitted]="formSubmitted"
+          [mensagensErro]="{ pattern: 'CEP deve conter 8 dígitos numéricos, sem pontos ou espaços.' }">
       </div>
 
           <div class="form-group col-md-4">

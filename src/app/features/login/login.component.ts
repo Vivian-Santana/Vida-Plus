@@ -44,7 +44,7 @@ export class LoginComponent {
     const { username, password } = this.loginForm.value;
 
     this.authService.login(username, password).subscribe({
-      next: (response: any) => {
+      next: () => {
         //console.log('Login bem-sucedido!', response);
 
         //o token já é salvo no AuthService.login()

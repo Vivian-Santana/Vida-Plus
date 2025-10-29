@@ -6,27 +6,38 @@ import { NgControl } from '@angular/forms';
 })
 export class CampoObrigatorioDirective implements OnInit {
   @Input() formSubmitted = false;
-
-  private errorElement!: HTMLElement;
+  @Input() mensagensErro: { [key: string]: string } = {};
 
   constructor(private el: ElementRef, private control: NgControl, private renderer: Renderer2) {}
 
+  private errorElements: { [key: string]: HTMLElement } = {};
+
   ngOnInit() {
-    // Cria o elemento de mensagem (oculto por padrão)
-    this.errorElement = this.renderer.createElement('div');
-    this.renderer.addClass(this.errorElement, 'text-danger');
-    this.renderer.setStyle(this.errorElement, 'font-size', '0.85rem');
-    this.renderer.setStyle(this.errorElement, 'margin-top', '2px');
-    const text = this.renderer.createText('Campo obrigatório');
-    this.renderer.appendChild(this.errorElement, text);
-    this.renderer.appendChild(this.el.nativeElement.parentNode, this.errorElement);
-    this.renderer.setStyle(this.errorElement, 'display', 'none');
+    // Sempre inclui 'required' como padrão, mas permite sobrescrever
+    const erros = { required: 'Campo obrigatório', ...this.mensagensErro };
+
+    Object.entries(erros).forEach(([tipo, mensagem]) => {
+        const div = this.renderer.createElement('div');
+        this.renderer.addClass(div, 'text-danger');
+        this.renderer.setStyle(div, 'font-size', '0.85rem');
+        this.renderer.setStyle(div, 'margin-top', '2px');
+        const text = this.renderer.createText(mensagem);
+        this.renderer.appendChild(div, text);
+        this.renderer.appendChild(this.el.nativeElement.parentNode, div);
+        this.renderer.setStyle(div, 'display', 'none');
+
+        // Salva cada elemento por tipo de erro
+        if (!this.errorElements) this.errorElements = {};
+        this.errorElements[tipo] = div;
+    });
   }
 
   ngDoCheck() {
     if (!this.control.control) return;
 
-    const invalid = this.control.invalid && (this.control.touched || this.formSubmitted);
-    this.renderer.setStyle(this.errorElement, 'display', invalid ? 'block' : 'none');
-  }
+    Object.keys(this.errorElements).forEach(tipo => {
+        const mostrar = this.control.hasError(tipo) && (this.control.touched || this.formSubmitted);
+        this.renderer.setStyle(this.errorElements[tipo], 'display', mostrar ? 'block' : 'none');
+    });
+    }
 }
