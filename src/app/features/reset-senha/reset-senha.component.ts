@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { AuthService } from '../../core/auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { AlertModalComponent } from '../../shared/alert-modal/alert-modal.component';
@@ -33,7 +33,6 @@ resetForm: FormGroup;
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private router: Router,
     private modalService: ModalService
   ) {
     this.resetForm = this.fb.group({

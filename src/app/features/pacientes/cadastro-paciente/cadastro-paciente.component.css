@@ -116,6 +116,18 @@ form button {
   color: var(--cor-ciano-medio);
 }
 
+.obrigatorio {
+  color: red;
+  margin-left: 2px;
+}
+
+.form-group .text-danger {
+  text-align: left !important;
+  display: block;
+  margin-left: 2px;
+  font-size: small;
+  font-weight: bold;
+}
 
 /* Media Query */
 @media (max-width: 937px){
