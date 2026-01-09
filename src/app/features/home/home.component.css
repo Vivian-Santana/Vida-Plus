@@ -15,7 +15,7 @@
 }
 
 /* Responsividade */
-@media (max-width: 519px), (max-height: 643px) {
+@media (max-width: 988px) {
   .cards-container {
     flex-direction: column;  /* empilha os cards */
     align-items: center;     /* centraliza na tela */

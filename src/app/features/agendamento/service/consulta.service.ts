@@ -25,7 +25,7 @@ export class ConsultaService {
 
   listarMedicos(): Observable<Medico[]> {
     return this.http.get<Medico[]>(`${this.apiUrl}medicos/todos`).pipe(
-      catchError(erro => {
+      catchError(() => {
         return throwError(() => new Error('Erro ao carregar médicos.'));
       })
     );
