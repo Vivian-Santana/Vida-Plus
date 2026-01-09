@@ -29,7 +29,7 @@ export class AuthService {
     return this.http.post<{ token: string }>(`${this.apiUrl}login`, { login, senha })
       .pipe(
         tap(response => {
-            //LIMPA usuário antigo antes de salvar o token novo
+          //LIMPA usuário antigo antes de salvar o token novo
           localStorage.removeItem(this.usuarioKey);
           this.usuarioLogado = null;              
           // API devolve { token: "..." }

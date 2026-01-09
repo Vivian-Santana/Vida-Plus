@@ -4,6 +4,7 @@ import { AuthGuard } from './core/guards/auth.guard';
 export const routes: Routes = [
   // abrir sempre em /login
   { path: '', redirectTo: 'login', pathMatch: 'full' },
+  
 
   // login e reset continuam lazy
   {
@@ -40,6 +41,13 @@ export const routes: Routes = [
   {
     path: 'cadastro-paciente',
     loadComponent: () => import('./features/pacientes/cadastro-paciente/cadastro-paciente.component').then(m => m.CadastroPacienteComponent)
+  },
+
+  //app-atualizar-cadastro
+  {
+    path: 'atualizar-cadastro',
+    loadComponent: () => import('./features/pacientes/atualizar-cadastro/atualizar-cadastro.component').then(m => m.AtualizarCadastroComponent),
+    canActivate: [AuthGuard]
   },
 
   // lista de médicos - protegida

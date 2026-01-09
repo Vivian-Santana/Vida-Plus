@@ -1,7 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
 import { environment } from '../../../environments/environment';
+import { DadosAtualizacaoPaciente } from '../../models/dados-atualizacao-paciente';
 
 @Injectable({ providedIn: 'root' })
 export class PacienteService {
@@ -17,4 +18,20 @@ export class PacienteService {
       })
     );
   }
+
+  atualizarPaciente(
+    dados: DadosAtualizacaoPaciente
+  ): Observable<any> {
+    const token = localStorage.getItem('token');
+
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    });
+
+    return this.http.put<any>(this.API, dados, { headers });
+  }
+
 }
+
+  
