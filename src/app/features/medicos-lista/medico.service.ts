@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 
@@ -10,16 +10,12 @@ export class MedicoService {
   constructor(private http: HttpClient) {}
 
   listar(pagina: number = 0, tamanho: number = 10): Observable<any> {
-    const token = localStorage.getItem('token') || '';
-    const headers = new HttpHeaders({
-      Authorization: `Bearer ${token}`
-    });
 
     const params = new HttpParams()
       .set('page', pagina.toString())
       .set('size', tamanho.toString())
       .set('sort', 'nome,asc');
 
-    return this.http.get<any>(this.API, { headers, params });
+    return this.http.get<any>(this.API, { params });
   }
 }

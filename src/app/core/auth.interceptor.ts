@@ -5,25 +5,32 @@ import { environment } from '../../environments/environment';
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
 
-    // Interceptor lê o token e injeta no header
-const token = localStorage.getItem('token_jwt');
+//Ignora requisições que pedem explicitamente para não usar auth
+  // if (req.headers.has('skip-auth')) {
+  //   return next(req);
+  // }
 
-// Só injeta o token se ele existir e a URL for da API
-const isApiRequest = req.url.startsWith(environment.apiUrl);
-
- // Debug para ver se o token está sendo carregado
-  //console.log('Token carregado no interceptor:', token);
-
-  if (token) {
-    const cloned = req.clone({
-      setHeaders: {
-        Authorization: `Bearer ${token}`
-      }
-    });
-    return next(cloned);
+//Só intercepta chamadas para a API
+  if (!req.url.startsWith(environment.apiUrl)) {
+    return next(req);
   }
 
-  return next(req);
-};
+  // Interceptor lê o token
+const token = localStorage.getItem('token_jwt');
+
+  if (!token) {
+    return next(req);
+  }
+
+  //Clona e injeta o Authorization
+  const authReq = req.clone({
+    setHeaders: {
+      Authorization: `Bearer ${token}`
+    }
+  });
+
+  return next(authReq);
+
+}
 
 
