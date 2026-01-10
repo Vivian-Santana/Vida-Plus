@@ -1,7 +1,7 @@
 // src/app/features/agendamento/services/consulta.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { catchError, map, Observable, tap, throwError } from 'rxjs';
+import { catchError, Observable, throwError } from 'rxjs';
 import { Consulta } from '../agendamento-model/consulta.model';
 import { ModalService } from './modal.service';
 import { Medico } from '../../../models/medico.model';
@@ -51,11 +51,8 @@ export class ConsultaService {
   }
   
     cancelarConsulta(consulta: any): Observable<void> {
-    const token = localStorage.getItem('token');
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     const url = `${this.apiUrl}consultas/${consulta.id}?motivo=PACIENTE_DESISTIU`;
-
-    return this.http.delete<void>(url, { headers });
+    return this.http.delete<void>(url);
   }
 
 }

@@ -96,13 +96,8 @@ export class AuthService {
     }
   }
 
-    resetSenha(dados: { senhaAtual: string; novaSenha: string }) {
-      const token = localStorage.getItem(this.tokenKey);
-      const headers = new HttpHeaders({
-        Authorization: `Bearer ${token}`,
-        'Content-Type': 'application/json'
-      });
-    return this.http.patch(`${this.apiUrl}usuarios/reset-senha`, dados, { headers });
+    resetSenha(dados: { senhaAtual: string; novaSenha: string }): Observable<any> {
+    return this.http.patch(`${this.apiUrl}usuarios/reset-senha`, dados);
   }
 
 }
