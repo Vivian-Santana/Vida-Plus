@@ -3,7 +3,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, Observable, of, tap } from 'rxjs';
-import { UsuarioLogado } from '../models/usuario-logado.model';
+import { UsuarioLogado } from '../features/logar/models/usuario-logado.model';
 import { environment } from '../../environments/environment';
 
 

@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { ModalService } from '../../features/agendamento/service/modal.service';
+import { ModalService } from '../../features/agendamento/services/modal.service';
 
 @Component({
   selector: 'app-alert-modal',

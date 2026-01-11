@@ -9,7 +9,7 @@ export const routes: Routes = [
   // login e reset continuam lazy
   {
     path: 'login',
-    loadComponent: () => import('./features/login/login.component').then(m => m.LoginComponent)
+    loadComponent: () => import('./features/logar/components/login/login.component').then(m => m.LoginComponent)
   },
   {
     path: 'reset-senha',
@@ -19,41 +19,41 @@ export const routes: Routes = [
   // dashboard (card) — só acessível se autenticado
   {
     path: 'home',
-    loadComponent: () => import('./features/home/home.component').then(m => m.HomeComponent),
+    loadComponent: () => import('./features/inicio/components/home/home.component').then(m => m.HomeComponent),
     canActivate: [AuthGuard]
   },
 
   // lista de consultas (rota acionada ao clicar no card) — também protegida
   {
     path: 'consultas-agendadas',
-    loadComponent: () => import('./features/agendamento/lista-consultas/lista-consultas.component').then(m => m.ListaConsultasComponent),
+    loadComponent: () => import('./features/agendamento/components/lista-consultas/lista-consultas.component').then(m => m.ListaConsultasComponent),
     canActivate: [AuthGuard]
   },
 
   //nova consulta - protegida
   {
     path: 'nova-consulta',
-    loadComponent: () => import('./features/agendamento/nova-consulta/nova-consulta.component').then(m => m.NovaConsultaComponent),
+    loadComponent: () => import('./features/agendamento/components/nova-consulta/nova-consulta.component').then(m => m.NovaConsultaComponent),
     canActivate: [AuthGuard]
   },
 
     //cadastro paciente
   {
     path: 'cadastro-paciente',
-    loadComponent: () => import('./features/pacientes/cadastro-paciente/cadastro-paciente.component').then(m => m.CadastroPacienteComponent)
+    loadComponent: () => import('./features/pacientes/components/cadastro-paciente/cadastro-paciente.component').then(m => m.CadastroPacienteComponent)
   },
 
   //app-atualizar-cadastro
   {
     path: 'atualizar-cadastro',
-    loadComponent: () => import('./features/pacientes/atualizar-cadastro/atualizar-cadastro.component').then(m => m.AtualizarCadastroComponent),
+    loadComponent: () => import('./features/pacientes/components/atualizar-cadastro/atualizar-cadastro.component').then(m => m.AtualizarCadastroComponent),
     canActivate: [AuthGuard]
   },
 
   // lista de médicos - protegida
   {
     path: 'medicos',
-    loadComponent: () => import('./features/medicos-lista/medicos-lista.component').then(m => m.MedicosListaComponent),
+    loadComponent: () => import('./features/medicos/components/medicos-lista/medicos-lista.component').then(m => m.MedicosListaComponent),
     canActivate: [AuthGuard]
   },
 
