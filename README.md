@@ -36,3 +36,7 @@ O projeto **Vida Plus** adota uma **arquitetura baseada em features (Feature-Bas
 Essa abordagem organiza o código por áreas funcionais da aplicação, facilitando a escalabilidade e manutenção.  
 Cada feature contém seus próprios componentes, serviços e modelos, mantendo baixo acoplamento e alta coesão.
 
+###
+![Screenshot print da pagina de login](/vidaPlus/img-readme/login.png)
+
+![Screenshot print da pagina inicial](/vidaPlus/img-readme/home.png)
