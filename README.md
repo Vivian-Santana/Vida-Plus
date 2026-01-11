@@ -37,6 +37,6 @@ Essa abordagem organiza o código por áreas funcionais da aplicação, facilita
 Cada feature contém seus próprios componentes, serviços e modelos, mantendo baixo acoplamento e alta coesão.
 
 ###
-![Screenshot print da pagina de login](/vidaPlus/img-readme/login.png)
+![Screenshot print da pagina de login](./img-readme/login.png)
 
-![Screenshot print da pagina inicial](/vidaPlus/img-readme/home.png)
+![Screenshot print da pagina inicial](./img-readme/home.png)
