@@ -9,7 +9,7 @@ import { CardAtualizarComponent } from "./../../cards/card-atualizar/card-atuali
   selector: 'app-home',
   standalone: true,
   imports: [RouterModule, CardConsultasComponent, CardAgendarConsultaComponent,
-    CardMedicosComponent, CardMedicosComponent, CardAtualizarComponent],
+    CardMedicosComponent, CardAtualizarComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
