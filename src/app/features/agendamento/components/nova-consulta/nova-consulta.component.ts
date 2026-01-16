@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { AuthService } from '../../../../core/auth.service';
@@ -6,6 +6,8 @@ import { CommonModule } from '@angular/common';
 import { ModalService } from '../../services/modal.service';
 import { AlertModalComponent } from '../../../../shared/alert-modal/alert-modal.component';
 import { ConsultaService } from '../../services/consulta.service';
+import { Medico } from '../../../medicos/models/medico.model';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-nova-consulta',
@@ -14,13 +16,14 @@ import { ConsultaService } from '../../services/consulta.service';
   templateUrl: './nova-consulta.component.html',
   styleUrl: './nova-consulta.component.css'
 })
-export class NovaConsultaComponent {
+export class NovaConsultaComponent implements OnInit, OnDestroy{
 
   consultaForm!: FormGroup;
   idPaciente!: number;
   usuarioCarregado = false;
+  medicos: Medico[] = [];
 
-  medicos: any;
+    private readonly destroy$ = new Subject<void>();
 
   constructor(
     private fb: FormBuilder,
@@ -35,26 +38,34 @@ export class NovaConsultaComponent {
     });
   }
 
-  //CARREGA O USUÁRIO ASSIM QUE O COMPONENTE INICIA
   ngOnInit(): void {
-    this.authService.carregarUsuarioLogado().subscribe(usuario => {
-      if (usuario) {
-        this.idPaciente = usuario.idPaciente;
-        this.usuarioCarregado = true;
-        //console.log('idPaciente carregado:', this.idPaciente); //debug
-      } else {
-        //console.error('Erro: idPaciente não carregado');
-      }
+    this.authService.carregarUsuarioLogado()
+    .pipe(takeUntil(this.destroy$))
+    .subscribe({
+      next: usuario => {
+        if (usuario) {
+          this.idPaciente = usuario.idPaciente;
+          this.usuarioCarregado = true;
+        }
+      },
+      error: () => this.modalService.abrirModalErro('Erro ao carregar usuário')
     });
 
     this.carregarMedicos();
   }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
   
   carregarMedicos(): void {
-    this.consultaService.listarMedicos().subscribe({
-      next: (lista) => {
+    this.consultaService.listarMedicos()
+    .pipe(takeUntil(this.destroy$))
+    .subscribe({
+      next: (lista: Medico[]) => {
         this.medicos = lista;
-      },
+      }, // erros tratado na ConsultaService
     });
   }
 
@@ -69,11 +80,13 @@ export class NovaConsultaComponent {
       idPaciente: this.idPaciente
     };
 
-    this.consultaService.agendarConsulta(payload).subscribe({
+    this.consultaService.agendarConsulta(payload)
+    .pipe(takeUntil(this.destroy$))
+    .subscribe({
       next: () => {
         this.modalService.abrirModalSucesso('Consulta agendada com sucesso!');
         this.consultaForm.reset();
       }
-    });
+    }); // erros tratado na ConsultaService
   }
 }

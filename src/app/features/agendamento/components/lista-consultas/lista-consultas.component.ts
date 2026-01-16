@@ -1,10 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ConsultaService } from '../../services/consulta.service';
 import { Consulta } from '../../models/consulta.model';
 import { AlertModalComponent } from '../../../../shared/alert-modal/alert-modal.component';
 import { ModalService } from '../../services/modal.service';
 import { ConfirmModalComponent } from "../../../../shared/confirm-modal/confirm-modal.component";
+import { Subject, takeUntil } from 'rxjs';
+import { HttpErrorResponse } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-lista-consultas',
@@ -13,64 +16,84 @@ import { ConfirmModalComponent } from "../../../../shared/confirm-modal/confirm-
   templateUrl: './lista-consultas.component.html',
   styleUrl: './lista-consultas.component.css'
 })
-export class ListaConsultasComponent {
+export class ListaConsultasComponent implements OnInit, OnDestroy  {
 
-  consultas: Consulta[] = []; //armazena o array de cosultas agendadas
+  consultas: Consulta[] = [];
   carregando = false;
   erro: string | null = null;
-  consultaParaCancelar: any = null;
+  consultaParaCancelar: Consulta | null = null;
+
+  private readonly destroy$ = new Subject<void>();
 
     constructor(
-      private consultaService: ConsultaService, 
-      private modalService: ModalService
+      private readonly consultaService: ConsultaService, 
+      private readonly modalService: ModalService
     ) {}
-
-    abrirConfirmacao(consulta: any) {
-    this.consultaParaCancelar = consulta;
-  }
-
-  fecharModal() {
-    this.consultaParaCancelar = null;
-  }
 
     ngOnInit(): void {
       this.carregarConsultas();
-     }
+    }
 
-      carregarConsultas() {
+    ngOnDestroy(): void {
+      this.destroy$.next();
+      this.destroy$.complete();
+    }
+
+      carregarConsultas(): void {
         this.carregando = true;
         this.erro = null;
 
-      this.consultaService.listarMinhasConsultas().subscribe({
-        next: (dados: Consulta[]) => {
-          this.consultas = dados;
-          this.carregando = false;
-        },
-        error: (err: any) => {
-          console.error(err);
-          this.erro = 'Erro ao carregar consultas';
-          this.carregando = false;
-        }
-      });
-
+      this.consultaService
+        .listarMinhasConsultas()
+        .pipe(takeUntil(this.destroy$))
+        .subscribe({
+          next: (consultas: Consulta[]) => {
+            this.consultas = consultas;
+            this.carregando = false;
+          },
+          error: (err: HttpErrorResponse) => {
+            console.error(err);
+            this.erro = 'Erro ao carregar consultas';
+            this.carregando = false;
+          }
+        });
     }
 
-    confirmarCancelamento() {
-    if (!this.consultaParaCancelar) return;
+    abrirConfirmacao(consulta: Consulta): void {
+      this.consultaParaCancelar = consulta;
+    }
 
-    this.consultaService.cancelarConsulta(this.consultaParaCancelar).subscribe({
-      next: () => {
-        this.consultas = this.consultas.filter(c => c.id !== this.consultaParaCancelar.id);
-        this.modalService.abrirModalSucesso('Consulta cancelada com sucesso!');
-        this.fecharModal();
-      },
-      error: (err) => {
-        this.modalService.abrirModalErro(this.modalService.handleApiError(err));
-        this.fecharModal();
-      }
-    });
+    fecharModal() {
+      this.consultaParaCancelar = null;
+    }
+
+    confirmarCancelamento(): void {
+      if (!this.consultaParaCancelar) return;
+
+    const consultaId = this.consultaParaCancelar.id;
+
+    this.consultaService
+      .cancelarConsulta(consultaId)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: () => {
+          this.consultas = this.consultas.filter(
+            c => c.id !== consultaId
+          );
+
+          this.modalService.abrirModalSucesso(
+            'Consulta cancelada com sucesso!'
+          );
+
+          this.fecharModal();
+        },
+        error: (err: HttpErrorResponse) => {
+          this.modalService.abrirModalErro(
+            this.modalService.handleApiError(err)
+          );
+          this.fecharModal();
+        }
+      });
   }
 
 }
-
-
