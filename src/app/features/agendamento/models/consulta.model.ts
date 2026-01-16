@@ -1,5 +1,4 @@
-// modelo de dados da feature de agendamento
-export interface Consulta {
+export interface Consulta{
   id: number;
   data: string;
   nomeMedico: string;
