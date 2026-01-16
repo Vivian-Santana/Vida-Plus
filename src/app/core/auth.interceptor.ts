@@ -1,9 +1,13 @@
 //interceptor usando essa chave token_jwt para enviar automaticamente o JWT no Authorization: Bearer ...
-import { HttpInterceptorFn } from '@angular/common/http';
+import { HttpErrorResponse, HttpInterceptorFn } from '@angular/common/http';
 import { environment } from '../../environments/environment';
-
+import { catchError, throwError } from 'rxjs';
+import { Router } from '@angular/router';
+import { inject } from '@angular/core';
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
+
+  const router = inject(Router);
 
 //Ignora requisições que pedem explicitamente para não usar auth
   // if (req.headers.has('skip-auth')) {
@@ -28,8 +32,21 @@ const token = localStorage.getItem('token_jwt');
       Authorization: `Bearer ${token}`
     }
   });
-
-  return next(authReq);
+  // Processa a requisição e captura erros de resposta globalmente
+  return next(authReq).pipe(
+    catchError((error: HttpErrorResponse) => {
+      if (error.status === 401 || error.status === 403) {
+        console.warn('Erro de autorização detectado:', error.status);
+        alert('⚠️ Sua sessão expirou. Por favor, faça login novamente.');
+        // Token inválido ou expirado: limpa e redireciona
+        localStorage.removeItem('token_jwt');
+        localStorage.removeItem('usuario_logado');
+        
+        router.navigate(['/login']);
+      }
+      return throwError(() => error);
+    })
+  );
 
 }
 

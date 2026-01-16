@@ -1,7 +1,7 @@
 // lógica de autenticação e token
 
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient} from '@angular/common/http';
 import { catchError, map, Observable, of, tap } from 'rxjs';
 import { UsuarioLogado } from '../features/logar/models/usuario-logado.model';
 import { environment } from '../../environments/environment';
@@ -59,23 +59,16 @@ export class AuthService {
       return of(this.usuarioLogado);
     }
 
-    //Se está no localStorage restaura e retorna
-    const salvo = localStorage.getItem(this.usuarioKey);
-    if (salvo) {
-      this.usuarioLogado = JSON.parse(salvo);
-      return of(this.usuarioLogado);
-    }
-
     //Senão, reconstrói via token + endpoint de pegar id de paciente
     const token = this.getToken();
     if (!token) return of(null);
 
     try {
-      const payload = JSON.parse(atob(token.split('.')[1]));
+      const payload = JSON.parse(atob(token.split('.')[1])); // decodifica payload do JWT
       const userId = payload.id;
       const userRole = payload.role;
 
-      return this.http.get<any>(`${this.apiUrl}pacientes/usuarios/${userId}/paciente-id`).pipe(
+      return this.http.get<UsuarioLogado>(`${this.apiUrl}pacientes/usuarios/${userId}/paciente-id`).pipe(
         map(dados => ({
           id: userId,
           idPaciente: dados.idPaciente,
@@ -96,7 +89,7 @@ export class AuthService {
     }
   }
 
-    resetSenha(dados: { senhaAtual: string; novaSenha: string }): Observable<any> {
+    resetSenha(dados: { senhaAtual: string; novaSenha: string }): Observable<unknown> {
     return this.http.patch(`${this.apiUrl}usuarios/reset-senha`, dados);
   }
 
