@@ -1,4 +1,7 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { ApiValidationError, ApiErrorResponse } from '../../../shared/api-error.model';
+
 
 @Injectable({
   providedIn: 'root'
@@ -28,24 +31,29 @@ export class ModalService {
     setTimeout(() => this.mostrarModalErro = false, 4000);
   }
 
-  // 💡 Tratamento genérico de erro vindo da API
-  handleApiError(err: any): string {
-    let mensagemErro = 'Ocorreu um erro.';
+  // Tratamento genérico de erro vindo da API
+  handleApiError(error: HttpErrorResponse): string {
+    const err = error.error;
 
     // Caso seja array de validação
-    if (Array.isArray(err.error) && err.error.length > 0) {
-      mensagemErro = err.error.map((e: any) => e.mensagem).join('\n');
-    } 
+    if (Array.isArray(err)){
+      return err
+        .map((e: ApiValidationError) => e.mensagem)
+        .join('\n');
+    }
+      
     // Caso seja objeto com message
-    else if (err.error && err.error.message) {
-      mensagemErro = err.error.message;
+    if (typeof err === 'object' && err?.message) {
+      return (err as ApiErrorResponse).message!;
     } 
+
     // Caso seja string simples
-    else if (typeof err.error === 'string') {
-      mensagemErro = err.error;
+    if (typeof err === 'string') {
+      return err;
     }
 
-    return mensagemErro;
+     //Fallback
+    return 'Ocorreu um erro inesperado. Tente novamente.';
   }
   
 }
