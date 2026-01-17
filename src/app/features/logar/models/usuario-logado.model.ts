@@ -1,3 +1,4 @@
+import { DadosEndereco } from "../../pacientes/models/dados-endereco";
 
 export interface UsuarioLogado {
   id: number;          // extraído do token JWT
@@ -7,5 +8,5 @@ export interface UsuarioLogado {
   email?: string;       // retornado pela API
   telefone?: string;    // retornado pela API
   cpf?: string;         // retornado pela API
-  endereco?: any;       // pode tipar depois se tiver um model para Endereco
+  endereco?: DadosEndereco; // retornado pela API
 }
