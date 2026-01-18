@@ -46,12 +46,5 @@
             <a routerLink="">Esqueceu sua senha?</a>
         </div>
     </form>
-
-        <!-- Modal de erro no login -->
-    <div *ngIf="mostrarModalErro" class="modal-overlay">
-    <div class="modal-content bg-danger text-white">
-        <h5 class="mb-2">❌ Erro</h5>
-        <p>{{ mensagemModal }}</p>
-    </div>
-    </div>
 </div>
+<app-alert-modal></app-alert-modal>

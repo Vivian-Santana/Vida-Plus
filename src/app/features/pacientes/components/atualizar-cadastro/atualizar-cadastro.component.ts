@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule, FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { PacienteService } from '../../services/paciente.service';
-import { ModalService } from '../../../agendamento/services/modal.service';
+import { ModalService } from '../../../../shared/modal.service';
 import { AlertModalComponent } from "../../../../shared/alert-modal/alert-modal.component";
 import { CampoObrigatorioDirective } from '../cadastro-paciente/campo-obrigatorio.directive';
 import { AuthService } from '../../../../core/auth.service';

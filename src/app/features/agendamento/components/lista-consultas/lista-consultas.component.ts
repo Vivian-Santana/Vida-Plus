@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ConsultaService } from '../../services/consulta.service';
 import { Consulta } from '../../models/consulta.model';
 import { AlertModalComponent } from '../../../../shared/alert-modal/alert-modal.component';
-import { ModalService } from '../../services/modal.service';
+import { ModalService } from '../../../../shared/modal.service';
 import { ConfirmModalComponent } from "../../../../shared/confirm-modal/confirm-modal.component";
 import { Subject, takeUntil } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
