@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { RouterModule } from '@angular/router';
 import { PacienteService } from '../../services/paciente.service';
 import { AlertModalComponent } from '../../../../shared/alert-modal/alert-modal.component';
-import { ModalService } from '../../../agendamento/services/modal.service';
+import { ModalService } from '../../../../shared/modal.service';
 import { CampoObrigatorioDirective } from './campo-obrigatorio.directive';
 
 @Component({

@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse} from '@angular/common/http';
 import { catchError, Observable, throwError } from 'rxjs';
 import { Consulta } from '../../agendamento/models/consulta.model';
-import { ModalService } from './modal.service';
+import { ModalService } from '../../../shared/modal.service';
 import { Medico } from '../../medicos/models/medico.model';
 import { environment } from '../../../../environments/environment';
 import { AgendamentoConsulta} from '../models/AgendamentoConsulta.model';

@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ApiValidationError, ApiErrorResponse } from '../../../shared/api-error.model';
+import { ApiValidationError, ApiErrorResponse } from './api-error.model';
 
 
 @Injectable({

@@ -3,36 +3,41 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../../../core/auth.service';
 import { Router, RouterModule } from '@angular/router';
+import { filter, switchMap } from 'rxjs';
+import { HttpErrorResponse } from '@angular/common/http';
+import { ModalService } from '../../../../shared/modal.service';
+import { AlertModalComponent } from '../../../../shared/alert-modal/alert-modal.component';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [RouterModule, CommonModule, ReactiveFormsModule],
+  imports: [RouterModule, CommonModule, ReactiveFormsModule, AlertModalComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
 
 export class LoginComponent {
 
-  loginForm: FormGroup;
   mostrarSenha: boolean = false;
-  mostrarModalErro = false;
-  mensagemModal = '';
 
-  // mostra/esconde senha
-  alternarSenha() {
-    this.mostrarSenha = !this.mostrarSenha;
-  }
+  readonly loginForm: FormGroup;
+
 
   constructor(
-    private fb: FormBuilder, 
-    private authService: AuthService, 
-    private router: Router
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router,
+    private modalService: ModalService
   ) {
-      this.loginForm = this.fb.group({
+    this.loginForm = this.fb.nonNullable.group({
       username: ['', Validators.required],
       password: ['', Validators.required]
     });
+  }
+
+  // mostra/esconde senha
+  alternarSenha(): void {
+    this.mostrarSenha = !this.mostrarSenha;
   }
 
   onSubmit() {
@@ -43,36 +48,32 @@ export class LoginComponent {
 
     const { username, password } = this.loginForm.value;
 
-    this.authService.login(username, password).subscribe({
-      next: () => {
-        //console.log('Login bem-sucedido!', response);
-
-        //o token já é salvo no AuthService.login()
-
-        //chama carregarUsuarioLogado() em vez de getUsuarioLogado()
-        this.authService.carregarUsuarioLogado().subscribe(usuario => {
-          if (usuario) {
-            //console.log('Usuário logado:', usuario);
-
-            //redireciona só depois que usuário é carregado
-            const redirect = localStorage.getItem('redirecionarAposLogin') || '/home';
+    this.authService.login(username, password)
+        .pipe(
+          switchMap(() => this.authService.carregarUsuarioLogado()),
+          filter(usuario => !!usuario)
+        )
+        .subscribe({
+        next: () => {
+          const redirect = 
+            localStorage.getItem('redirecionarAposLogin') || '/home';
             localStorage.removeItem('redirecionarAposLogin');
-            //console.log('Redirecionando para:', redirect);
             this.router.navigate([redirect]);
-          } else {
-            alert('Erro ao carregar informações do usuário.');
+          },
+          error: (err: HttpErrorResponse) => {
+            //console.error('Erro no login', err); debug
+            this.modalService.abrirModalErro (
+              err.error?.message || 'Usuário ou senha inválidos.'
+            );
           }
         });
-      },
-      error: (err) => {
-        console.error('Erro no login', err);
-        this.mensagemModal = err.error?.message || 'Erro no login. Verifique suas credenciais.';
-        this.mostrarModalErro = true;
-        setTimeout(() => this.mostrarModalErro = false, 4000);
-      }
-    });
   }
 
-  get username() { return this.loginForm.get('username'); }
-  get password() { return this.loginForm.get('password'); }
+  get username() { 
+    return this.loginForm.controls['username'];
+  }
+
+  get password() {
+     return this.loginForm.controls['password']; 
+    }
 }

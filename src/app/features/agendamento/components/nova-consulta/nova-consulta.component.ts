@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { RouterModule } from '@angular/router';
 import { AuthService } from '../../../../core/auth.service';
 import { CommonModule } from '@angular/common';
-import { ModalService } from '../../services/modal.service';
+import { ModalService } from '../../../../shared/modal.service';
 import { AlertModalComponent } from '../../../../shared/alert-modal/alert-modal.component';
 import { ConsultaService } from '../../services/consulta.service';
 import { Medico } from '../../../medicos/models/medico.model';
