@@ -22,7 +22,7 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
   }
 
   // Interceptor lê o token
-const token = localStorage.getItem('token_jwt');
+  const token = authService.getToken();
 
   if (!token) {
     return next(req);
