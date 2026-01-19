@@ -4,10 +4,12 @@ import { environment } from '../../environments/environment';
 import { catchError, throwError } from 'rxjs';
 import { Router } from '@angular/router';
 import { inject } from '@angular/core';
+import { AuthService } from './auth.service';
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
-
+//console.log('Interceptor interceptando URL:', req.url);
   const router = inject(Router);
+  const authService = inject(AuthService);
 
 //Ignora requisições que pedem explicitamente para não usar auth
   // if (req.headers.has('skip-auth')) {
@@ -35,14 +37,15 @@ const token = localStorage.getItem('token_jwt');
   // Processa a requisição e captura erros de resposta globalmente
   return next(authReq).pipe(
     catchError((error: HttpErrorResponse) => {
-      if (error.status === 401 || error.status === 403) {
+      if (error.status === 401) {
         console.warn('Erro de autorização detectado:', error.status);
         alert('⚠️ Sua sessão expirou. Por favor, faça login novamente.');
         // Token inválido ou expirado: limpa e redireciona
-        localStorage.removeItem('token_jwt');
-        localStorage.removeItem('usuario_logado');
+        setTimeout(() => {
+            authService.logout(); // Limpa localStorage e memória
+            router.navigate(['/login']);
+          }, 2000);
         
-        router.navigate(['/login']);
       }
       return throwError(() => error);
     })

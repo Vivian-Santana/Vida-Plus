@@ -5,6 +5,7 @@ import { HttpClient} from '@angular/common/http';
 import { catchError, map, Observable, of, tap } from 'rxjs';
 import { UsuarioLogado } from '../features/logar/models/usuario-logado.model';
 import { environment } from '../../environments/environment';
+import { ResetSenhaRequest, ResetSenhaResponse} from '../features/resetar-senha/models/reset-senha.model';
 
 
 @Injectable({ providedIn: 'root' })
@@ -16,7 +17,7 @@ export class AuthService {
   private tokenKey = 'token_jwt'; // chave usada no localStorage
   private usuarioKey = 'usuario_logado';
 
-  constructor(private http: HttpClient) { 
+  constructor(private readonly http: HttpClient) { 
     // Tenta restaurar usuário do localStorage ao iniciar
     const salvo = localStorage.getItem(this.usuarioKey);
     if (salvo) {
@@ -89,8 +90,11 @@ export class AuthService {
     }
   }
 
-    resetSenha(dados: { senhaAtual: string; novaSenha: string }): Observable<unknown> {
-    return this.http.patch(`${this.apiUrl}usuarios/reset-senha`, dados);
+    resetSenha(payload: ResetSenhaRequest): Observable<ResetSenhaResponse> {
+      return this.http.patch<ResetSenhaResponse>(
+      `${this.apiUrl}usuarios/reset-senha`,
+      payload
+    );
   }
 
 }

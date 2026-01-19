@@ -61,10 +61,15 @@ export class LoginComponent {
             this.router.navigate([redirect]);
           },
           error: (err: HttpErrorResponse) => {
-            //console.error('Erro no login', err); debug
             this.modalService.abrirModalErro (
               err.error?.message || 'Usuário ou senha inválidos.'
             );
+             // limpa os campos
+              this.loginForm.reset();
+
+              // remove estados de erro/dirty
+              this.loginForm.markAsPristine();
+              this.loginForm.markAsUntouched();
           }
         });
   }
