@@ -13,7 +13,7 @@ export const routes: Routes = [
   },
   {
     path: 'reset-senha',
-    loadComponent: () => import('./features/reset-senha/reset-senha.component').then(m => m.ResetSenhaComponent)
+    loadComponent: () => import('./features/resetar-senha/components/reset-senha/reset-senha.component').then(m => m.ResetSenhaComponent)
   },
 
   // dashboard (card) — só acessível se autenticado
