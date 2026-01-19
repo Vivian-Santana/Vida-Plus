@@ -53,7 +53,7 @@ export class ModalService {
     }
 
      //Fallback
-    return 'Ocorreu um erro inesperado. Tente novamente.';
+    return err//'Ocorreu um erro inesperado. Tente novamente.';
   }
   
 }
