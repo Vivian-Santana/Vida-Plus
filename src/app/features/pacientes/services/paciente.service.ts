@@ -11,7 +11,7 @@ export class PacienteService {
 
   constructor(private http: HttpClient) {}
 
-  cadastrarPaciente(dados: any): Observable<any> {
+  cadastrarPaciente(dados: DadosAtualizacaoPaciente): Observable<any> {
     return this.http.post(this.API, dados).pipe(
       catchError(err => {
         return throwError(() => err);
@@ -21,8 +21,8 @@ export class PacienteService {
 
   atualizarPaciente(
     dados: DadosAtualizacaoPaciente
-  ): Observable<any> {
-    return this.http.put<any>(this.API, dados);
+  ): Observable<DadosAtualizacaoPaciente> {
+    return this.http.put<DadosAtualizacaoPaciente>(this.API, dados);
   }
 
 }

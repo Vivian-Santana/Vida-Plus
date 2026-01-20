@@ -8,6 +8,7 @@ import { AlertModalComponent } from '../../../../shared/alert-modal/alert-modal.
 import { ModalService } from '../../../../shared/modal.service';
 import { Subject, takeUntil } from 'rxjs';
 import { ResetSenhaRequest, ResetSenhaResponse } from '../../models/reset-senha.model';
+import { UsuarioService } from '../../services/usuario-service';
 
 @Component({
   selector: 'app-reset-senha',
@@ -28,6 +29,7 @@ export class ResetSenhaComponent implements OnInit, OnDestroy {
   constructor(
       private readonly fb: FormBuilder,
       private readonly authService: AuthService,
+      private readonly usuarioService: UsuarioService,
       private readonly modalService: ModalService,
       private readonly router: Router
     ) {}
@@ -64,7 +66,7 @@ export class ResetSenhaComponent implements OnInit, OnDestroy {
 
     const payload: ResetSenhaRequest = this.resetForm.value;
 
-    this.authService
+    this.usuarioService
     .resetSenha(payload)
     .pipe(takeUntil(this.destroy$))
     .subscribe({

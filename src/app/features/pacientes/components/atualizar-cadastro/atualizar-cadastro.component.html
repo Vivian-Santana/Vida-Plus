@@ -5,7 +5,7 @@
       <h2>Atualize seu Cadastro</h2>
   </div>
 
-  <form [formGroup]="atualizacaoForm" (ngSubmit)="atualizar()">
+  <form [formGroup]="atualizacaoForm" (ngSubmit)="onSubmit()">
     <div class="form-row">
       <div class="form-group col-md-8">
         <label for="inputNomeCompleto">Nome Completo</label>
@@ -66,8 +66,6 @@
           </div>
       </div>
     </div>
-
-
     <button type="submit" class="btn btn-info">Atualizar</button>
   </form>
 
