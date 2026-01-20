@@ -7,6 +7,8 @@ import { ModalService } from '../../../../shared/modal.service';
 import { AlertModalComponent } from "../../../../shared/alert-modal/alert-modal.component";
 import { CampoObrigatorioDirective } from '../cadastro-paciente/campo-obrigatorio.directive';
 import { AuthService } from '../../../../core/auth.service';
+import { DadosAtualizacaoPaciente } from '../../models/dados-atualizacao-paciente';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-atualizar-cadastro',
@@ -19,12 +21,13 @@ export class AtualizarCadastroComponent implements OnInit {
   
   atualizacaoForm!: FormGroup;
   formSubmitted = false;
+  private idPaciente!: number;
 
   constructor(
-    private fb: FormBuilder,
-    private pacienteService: PacienteService,
-    private authService: AuthService,
-    private modalService: ModalService
+    private readonly fb: FormBuilder,
+    private readonly pacienteService: PacienteService,
+    private readonly authService: AuthService,
+    private readonly modalService: ModalService
   ) {}
 
     ngOnInit(): void {
@@ -52,6 +55,7 @@ export class AtualizarCadastroComponent implements OnInit {
 
   private carregarIdPaciente() {
     this.authService.carregarUsuarioLogado()
+      .pipe(take(1)) //Garante que após receber o ID uma vez, a inscrição morre
       .subscribe(usuario => {
         if (!usuario?.idPaciente) {
           this.modalService.abrirModalErro(
@@ -59,6 +63,7 @@ export class AtualizarCadastroComponent implements OnInit {
           );
           return;
         }
+        this.idPaciente = usuario.idPaciente;
 
         this.atualizacaoForm.patchValue({
           id: usuario.idPaciente
@@ -66,11 +71,7 @@ export class AtualizarCadastroComponent implements OnInit {
       });
   }
 
-  atualizar() {
-  // console.log('FORM VALUE:', this.atualizacaoForm.value);
-  // console.log('FORM STATUS:', this.atualizacaoForm.status);
-  // console.log('FORM ERRORS:', this.atualizacaoForm.errors);
-
+  onSubmit() {
     this.formSubmitted = true;
     if (this.atualizacaoForm.invalid){
       this.atualizacaoForm.markAllAsTouched();
@@ -78,14 +79,21 @@ export class AtualizarCadastroComponent implements OnInit {
       return;
     }
 
-    const DadosAtualizados = this.atualizacaoForm.value
-    
-    this.pacienteService.atualizarPaciente(DadosAtualizados)
+    this.executarAtualizacao();
+  }
+
+  private executarAtualizacao() {
+    const dadosAtualizados: DadosAtualizacaoPaciente = this.atualizacaoForm.value;
+
+    this.pacienteService.atualizarPaciente(dadosAtualizados)
       .subscribe({
-        next: response => {
-            console.log(response);
+        next: () => {
             this.modalService.abrirModalSucesso('Cadastro atualizado com sucesso!');
+            
+            this.formSubmitted = false;
+            this.resetForm();
         },
+              
         error: err => {
           if (err.status === 400) {
             this.modalService.abrirModalErro('Erro de validação nos dados');
@@ -94,6 +102,12 @@ export class AtualizarCadastroComponent implements OnInit {
           }
         }   
       });
+  }
+    //reseta o formulário e reatribui o id do paciente
+    private resetForm(): void {
+    this.atualizacaoForm.reset(); // Reseta os valores e o estado (touched, dirty, etc) da instância existente
+    this.atualizacaoForm.patchValue({ id: this.idPaciente });
+    this.formSubmitted = false; // Reseta o estado de submissão para esconder mensagens de erro do template
   }
 
 }

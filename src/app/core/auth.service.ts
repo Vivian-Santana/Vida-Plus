@@ -5,8 +5,6 @@ import { HttpClient} from '@angular/common/http';
 import { catchError, map, Observable, of, tap } from 'rxjs';
 import { UsuarioLogado } from '../features/logar/models/usuario-logado.model';
 import { environment } from '../../environments/environment';
-import { ResetSenhaRequest, ResetSenhaResponse} from '../features/resetar-senha/models/reset-senha.model';
-
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -88,13 +86,6 @@ export class AuthService {
     } catch {
       return of(null);
     }
-  }
-
-    resetSenha(payload: ResetSenhaRequest): Observable<ResetSenhaResponse> {
-      return this.http.patch<ResetSenhaResponse>(
-      `${this.apiUrl}usuarios/reset-senha`,
-      payload
-    );
   }
 
 }
