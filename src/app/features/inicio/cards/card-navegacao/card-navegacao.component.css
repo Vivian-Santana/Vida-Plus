@@ -1,0 +1,21 @@
+.card{
+    max-width: 17rem; 
+    cursor:pointer;
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.card__text{
+   font-weight: bold;
+   color: var(--cor-verde-azulado-escuro)!important;
+}
+
+.card__icon{
+  width: 70%;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(0,0,0,.08);
+}

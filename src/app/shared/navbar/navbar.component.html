@@ -7,17 +7,18 @@
   <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
       <li class="nav-item active">
-        <a class="nav-link" href="/src/app/features/home/home.component.html">Início <span class="sr-only">(Página atual)</span></a>
+        <div class="nav-link-group">
+          <i class="fa-solid fa-house"></i>
+          <a class="nav-link" href="/src/app/features/home/home.component.html">Início <span class="sr-only">(Página atual)</span></a>
+        </div>
       </li>
       
       <li class="nav-item">
-        <a class="nav-link disabled" routerLink="/reset-senha">Alterar senha</a>
+        <div class="nav-link-group">
+          <i class="fa-solid fa-key"></i>
+          <a class="nav-link disabled" routerLink="/reset-senha">Alterar senha</a>
+        </div>
       </li>
-      <!--
-      <li class="nav-item">
-        <a class="nav-link" href="#" routerLink="medicos">Médicos</a>
-      </li>
-      -->
     </ul>
     <div class="form-inline my-2 my-lg-0">
       <button class="btn btn-outline-info my-2 my-sm-0" (click)="logout()">Sair</button>

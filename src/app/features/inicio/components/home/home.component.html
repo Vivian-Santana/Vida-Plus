@@ -1,30 +1,25 @@
+<!-- componente pai reutiliza card-navegacao-->
+
 <div class="cards-container">
-
-    <div class="card">
-        <app-card-medicos>
-        <a routerLink="/medicos">Médicos</a>
-        </app-card-medicos>
-    </div>
-
-    <div class="card">
-        <app-card-consultas>
-        <a routerLink="/consultas-agendadas">Ver Consultas</a>
-        </app-card-consultas>
-    </div>
+    <app-card-navegacao rota="/medicos">
+        <img card-icon src="assets/img/user-doctor-solid-full.svg" alt="ícone de um médico">
+        <p card-content>Médicos</p>
+    </app-card-navegacao>
+  
+    <app-card-navegacao rota="/consultas-agendadas">
+        <img card-icon  src="assets/img/calendar-solid-full.svg" alt="ícone de calendário">
+        <p card-content>Consultas agendadas</p>
+    </app-card-navegacao>
     
-    <div class="card">
-        <app-card-agendar-consulta>
-        <a routerLink="/nova-consulta">Agendar Consulta</a>
-        </app-card-agendar-consulta>
-    </div>
+    <app-card-navegacao rota="/nova-consulta">
+        <img card-icon src="assets/img/stethoscope-regular-full.svg" alt="">
+        <p card-content>Agendar consulta</p>
+    </app-card-navegacao>
 
-    <div class="card">
-        <app-card-atualizar>
-            <a href="/atualizar-cadastro">Atualizar Cadastro</a>
-        </app-card-atualizar>
-    </div>
-    
+    <app-card-navegacao rota="/atualizar-cadastro">
+        <img card-icon src="assets/img/file-pen-solid-full.svg" alt="ícone de papel e caneta">
+        <p card-content>Atualizar Cadastro</p>
+    </app-card-navegacao>
 </div>
 
 
-<router-outlet></router-outlet>

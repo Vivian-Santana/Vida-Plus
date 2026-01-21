@@ -1,15 +1,11 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { CardConsultasComponent } from "./../../cards/card-consultas/card-consultas.component";
-import { CardAgendarConsultaComponent } from './../../cards/card-agendar-consulta/card-agendar-consulta.component';
-import { CardMedicosComponent } from "./../../cards/card-medicos/card-medicos.component";
-import { CardAtualizarComponent } from "./../../cards/card-atualizar/card-atualizar.component";
+import { CardNavegacaoComponent } from '../../cards/card-navegacao/card-navegacao.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterModule, CardConsultasComponent, CardAgendarConsultaComponent,
-    CardMedicosComponent, CardAtualizarComponent],
+  imports: [RouterModule, CardNavegacaoComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })

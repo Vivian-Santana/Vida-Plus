@@ -11,8 +11,8 @@ export class PacienteService {
 
   constructor(private http: HttpClient) {}
 
-  cadastrarPaciente(dados: DadosAtualizacaoPaciente): Observable<any> {
-    return this.http.post(this.API, dados).pipe(
+  cadastrarPaciente(dados: DadosAtualizacaoPaciente): Observable<DadosAtualizacaoPaciente> {
+    return this.http.post<DadosAtualizacaoPaciente>(this.API, dados).pipe(
       catchError(err => {
         return throwError(() => err);
       })

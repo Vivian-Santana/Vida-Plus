@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ConsultaService } from '../../services/consulta.service';
-import { Consulta } from '../../models/consulta.model';
+import { Consulta } from '../../../agendamento/models/Consulta.model';
 import { AlertModalComponent } from '../../../../shared/alert-modal/alert-modal.component';
 import { ModalService } from '../../../../shared/modal.service';
 import { ConfirmModalComponent } from "../../../../shared/confirm-modal/confirm-modal.component";
