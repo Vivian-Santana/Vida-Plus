@@ -1,17 +1,20 @@
 .cards-container {
   display: flex;
-  gap: 20px;          /* espaço entre os cards */
-  justify-content: center; /* centraliza na horizontal*/
+  gap: 20px;         
+  justify-content: center; 
   align-items: center;
-  margin-top: 120px;
+  min-height: 65vh; 
 }
 
-.card{
-  transition: transform 0.2s ease; /* animação suave */
-  cursor: pointer;
+.cards-container img{
+  width: 50%;
+  text-align: center;
+  margin-top: 10px;
 }
-.card:hover{
-  transform: translateY(-5px); /* "saltar" 5px para cima */
+
+.cards-container p{
+   font-weight: bold;
+   color: var(--cor-verde-azulado-escuro)!important;
 }
 
 /* Responsividade */
@@ -22,7 +25,7 @@
   }
 
   .cards-container .card {
-    max-width: 90%;   /* ocupa 90% da tela menor */
+    max-width: 80%;   /* ocupa 90% da tela menor */
     margin-bottom: 15px;
   }
 }

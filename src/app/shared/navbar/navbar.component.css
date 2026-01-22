@@ -1,10 +1,25 @@
 img{
     width: 4%;
-    margin-right: 10px;
+    margin-right: 0.625rem;
 }
 
 .nav-link{
     font-weight: bold;
+}
+
+.nav-item{
+    margin-left: 0.938rem;
+}
+
+.nav-link-group {
+  display: flex;
+  align-items: center;
+  gap: 0.313rem;
+  flex-direction: row;
+}
+
+.fa-solid{
+  color: var(--cor-ciano);
 }
 
 .navbar .nav-link {

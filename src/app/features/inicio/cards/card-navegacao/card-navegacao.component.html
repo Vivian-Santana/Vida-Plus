@@ -1,0 +1,11 @@
+<!-- componente filho reutilizável -->
+ 
+<div class="card" [routerLink]="rota">
+  <div class="card__icon d-block mx-auto">
+    <ng-content select="[card-icon]"></ng-content>
+  </div>
+
+  <div class="card-body text-center">
+    <ng-content select="[card-content]"></ng-content>
+  </div>
+</div>
