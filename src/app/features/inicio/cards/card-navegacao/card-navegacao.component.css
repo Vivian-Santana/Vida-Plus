@@ -1,16 +1,16 @@
 .card{
-    max-width: 17rem; 
+    width: 17rem; 
     cursor:pointer;
     transition: transform .2s ease, box-shadow .2s ease;
 }
 
-.card__text{
+.card-body{
    font-weight: bold;
    color: var(--cor-verde-azulado-escuro)!important;
 }
 
 .card__icon{
-  width: 70%;
+  width: 6.25rem;
   text-align: center;
   margin-top: 10px;
 }
