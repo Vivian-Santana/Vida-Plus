@@ -1,0 +1,54 @@
+.cadastro-paciente-container {
+  display: block;
+  align-items: center;
+  width: 80%;
+  margin: 2.5rem auto;
+  padding: 1.875rem;
+  background-color: var(--cor-branco-fundo);
+  border: 0.063rem solid var(--cor-cinza-gelo-fundo);
+  border-radius: 0.625rem;
+  box-shadow: 0 0.125rem 0.375rem rgba(0, 0, 0, 0.05);
+}
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.938rem;
+  margin-bottom: 0.938rem;
+}
+
+.form-group {
+  flex: 1;
+  min-width: 11.25rem;
+}
+
+.header-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3.125rem;
+  width: 100%;
+}
+
+/* Media Query */
+
+@media (max-width: 830px) {
+  button.btn.btn-primary {
+    width: 70% !important;
+    max-width: 20.625rem;           
+    font-size: 1rem !important; 
+    padding: 0.875rem 0 !important; 
+    display: block;
+    margin: 1rem auto;          
+    box-sizing: border-box;
+  }
+}
+
+@media (max-width: 511px){
+    .header-container {
+    flex-direction: column;   
+    align-items: center;      
+    justify-content: center;  
+    gap: 1.25rem;                
+  }
+}

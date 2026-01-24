@@ -18,6 +18,10 @@ img{
   flex-direction: row;
 }
 
+.navbar-toggler {
+  border: 2px solid var(--cor-ciano);
+}
+
 .fa-solid{
   color: var(--cor-ciano);
 }
