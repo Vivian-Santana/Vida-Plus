@@ -9,13 +9,25 @@ import { CampoObrigatorioDirective } from '../cadastro-paciente/campo-obrigatori
 import { AuthService } from '../../../../core/auth.service';
 import { DadosAtualizacaoPaciente } from '../../models/dados-atualizacao-paciente';
 import { take } from 'rxjs';
+import { FormLayoutComponent } from "../../../../shared/form-layout/form-layout/form-layout.component";
 
 @Component({
   selector: 'app-atualizar-cadastro',
   standalone: true,
-  imports: [CommonModule, RouterModule, ReactiveFormsModule, AlertModalComponent, CampoObrigatorioDirective],
+  imports: [
+    CommonModule, 
+    RouterModule, 
+    ReactiveFormsModule, 
+    AlertModalComponent, 
+    CampoObrigatorioDirective, 
+    FormLayoutComponent
+  ],
+  
   templateUrl: './atualizar-cadastro.component.html',
-  styleUrl: './atualizar-cadastro.component.css'
+  styleUrls: [
+    './atualizar-cadastro.component.css', 
+    '../../../../shared/form-layout/forms.css'
+  ]
 })
 export class AtualizarCadastroComponent implements OnInit {
   

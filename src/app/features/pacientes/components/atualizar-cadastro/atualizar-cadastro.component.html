@@ -1,10 +1,14 @@
-<div class="cadastro-paciente-container">
+<app-form-layout>
 
-  <div class="header-container">
-      <img src="assets/img/Logo_vidaPlus.svg" alt="Logo Vida Plus">
+                                                <!-- HEADER -->
+  <div form-header>
+    <div class="header-container">
       <h2>Atualize seu Cadastro</h2>
+    </div>
   </div>
 
+                                    <!-- FORMULÁRIO COMPLETO DE ATUALIZAÇÃO-->
+<div form-content>
   <form [formGroup]="atualizacaoForm" (ngSubmit)="onSubmit()">
     <div class="form-row">
       <div class="form-group col-md-8">
@@ -68,6 +72,8 @@
     </div>
     <button type="submit" class="btn btn-info">Atualizar</button>
   </form>
-
 </div>
+
 <app-alert-modal></app-alert-modal>
+
+</app-form-layout>

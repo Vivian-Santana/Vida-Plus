@@ -1,0 +1,114 @@
+/* ====== ESTILO PADRÃO DOS FORMULÁRIOS  ====== */
+
+label {
+  display: flex;
+  justify-content: left;
+  font-weight: 600;
+  color: var(--cor-verde-azulado-escuro);
+  margin-bottom: 0.313rem;
+}
+
+.form-check-label{
+  display: inline;
+}
+
+.form-check-input {
+  accent-color: var(--cor-ciano);
+}
+
+input,
+select {
+  border: 0.063rem solid var(--cor-cinza-medio);
+  border-radius: 0.375rem;
+  padding: 0.5rem 0.625rem;
+  font-size: 0.875rem;
+  transition: all 0.2s ease;
+}
+
+/* Header */
+.header-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3.125rem;
+  margin: 0 0 1.25rem 0;
+  width: 100%;
+}
+
+img{
+    width: 10%;
+}
+
+h2{
+  display:inline;
+  text-align: center;
+  color: var(--cor-ciano);
+  font-weight: bold;
+}
+/* Header */
+
+/* foco nos campos de input cor personalizada */
+input:focus,
+select:focus {
+  border-color: var(--cor-ciano-claro);
+  outline: none;
+  box-shadow: 0 0 0.25rem rgba(3, 234, 222, 0.58);
+}
+/* foco nos campos de input cor personalizada */
+
+form {
+  text-align: center;
+}
+
+form button {
+  display: inline-block;
+  font-weight: bold;
+}
+
+/* campo obrigatorio */
+.obrigatorio {
+  color: red;
+  margin-left: 0.125rem;
+}
+
+.form-group .text-danger {
+  text-align: left !important;
+  display: block;
+  margin-left: 0.125rem;
+  font-size: small;
+  font-weight: bold;
+}
+/* campo obrigatorio */
+
+/* Media Query */
+
+@media (max-width: 830px) {
+  button.btn.btn-primary {
+    width: 70% !important;
+    max-width: 20.625rem;           /* evita ultrapassar limites */
+    font-size: 1rem !important; /* aumenta o tamanho da fonte */
+    padding: 0.875rem 0 !important; /* aumenta a altura do botão */
+    display: block;
+    margin: 1rem auto;          /* centraliza horizontalmente */
+    box-sizing: border-box;
+  }
+  .form-check a label{
+    font-size:smaller
+  }
+}
+
+@media (max-width: 511px){
+
+  .header-container img {
+    width: 20%;               /* aumenta um pouco o tamanho da logo no mobile */
+  }
+
+  .header-container h2 {
+    text-align: center;
+    font-size: 1.4rem;
+  }
+
+    .form-check-label{
+    display:block;
+  }
+}

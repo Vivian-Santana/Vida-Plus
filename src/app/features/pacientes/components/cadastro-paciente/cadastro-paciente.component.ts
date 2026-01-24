@@ -6,13 +6,25 @@ import { PacienteService } from '../../services/paciente.service';
 import { AlertModalComponent } from '../../../../shared/alert-modal/alert-modal.component';
 import { ModalService } from '../../../../shared/modal.service';
 import { CampoObrigatorioDirective } from './campo-obrigatorio.directive';
+import { FormLayoutComponent } from "../../../../shared/form-layout/form-layout/form-layout.component";
 
 @Component({
   selector: 'app-cadastro-paciente',
   standalone: true,
-  imports: [RouterModule, CommonModule, ReactiveFormsModule, AlertModalComponent, CampoObrigatorioDirective],
+  imports: [
+    RouterModule, 
+    CommonModule, 
+    ReactiveFormsModule, 
+    AlertModalComponent, 
+    CampoObrigatorioDirective, 
+    FormLayoutComponent
+  ],
+  
   templateUrl: './cadastro-paciente.component.html',
-  styleUrl: './cadastro-paciente.component.css'
+  styleUrls: [
+    './cadastro-paciente.component.css',
+     '../../../../shared/form-layout/forms.css'
+    ]
 })
 export class CadastroPacienteComponent {
   cadastroForm: FormGroup;
