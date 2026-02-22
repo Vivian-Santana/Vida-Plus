@@ -42,9 +42,9 @@ Cada feature contém seus próprios componentes, serviços e modelos, mantendo b
 
 | | |
 |---|---|
-| ![Screenshot da pagina de login](/vidaPlus/img-readme/login.png) | ![Screenshot da pagina inicial](/vidaPlus/img-readme/home.png) |
+| ![Screenshot da pagina de login](./img-readme/login.png) | ![Screenshot da pagina inicial](./img-readme/home.png) |
 
 
 | | | |
 |---|---|---|
-| ![Screenshot da pagina de login mobile](/vidaPlus/img-readme/login-mobile.png) | ![Screenshot da pagina inicial mobile](/vidaPlus/img-readme/home-mobile.png) | ![Screenshot da pagina inicial com menu mobile aberto](/vidaPlus/img-readme/nav-mobile.png) |
+| ![Screenshot da pagina de login mobile](./img-readme/login-mobile.png) | ![Screenshot da pagina inicial mobile](./img-readme/home-mobile.png) | ![Screenshot da pagina inicial com menu mobile aberto](./img-readme/nav-mobile.png) |
