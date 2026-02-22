@@ -16,6 +16,7 @@ O **Vida Plus** é um sistema de agendamento de consultas médicas desenvolvido 
 
 ### **Back-end**
 - API Voll Med
+https://github.com/Vivian-Santana/Voll_Med
 
 ---
 
@@ -26,6 +27,7 @@ O **Vida Plus** é um sistema de agendamento de consultas médicas desenvolvido 
 - Agendamento de consultas
 - Visualização de consultas agendadas
 - Cancelamento de consultas
+- Atualizar cadastro
 
 ---
 
